@@ -1,8 +1,54 @@
 import React from "react";
 import "../Css/style.css"
 import "../Css/responsive.css"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const Register = () => {
+    const [userData, setuserData] = useState({ name: '', email: '', password: '', confirmPassword: '' })
+    const router = useNavigate()
+
+    const handleChange = (event) => {
+        setuserData({ ...userData, [event.target.name]: event.target.value })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log("hiiiii");
+        const { name, email, password, confirmPassword } = userData;
+        if (!name || !email || !password || !confirmPassword)alert("Please fill all the fields.")
+        if (password.length < 5 || confirmPassword.length < 5)alert("Password length should be greater than 5.")
+        if (password !== confirmPassword) alert("Passsword and confirm password not matched.")
+        console.log("afhiii");
+        try {
+            console.log("inside try jsx");
+
+            const response = await axios.post('http://localhost:3000/api/user/register', {
+                name: userData.name,
+                email: userData.email,
+                password: userData.password,
+                confirmPassword: userData.confirmPassword
+            })
+            console.log("response after axios", userData);
+            if (response.data.success) {
+                setuserData({ name: '', email: '', password: '', confirmPassword: '' })
+                router('/login')
+                alert(response.data.success)
+            } else {
+              alert(response.data.message)
+            }
+
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
+              alert(err.response.data.message);
+            } else {
+              alert("An error occurred. Please try again later.");
+            }
+        }
+    }
+
     return (
         <div className="register-screen">
             <div className="login-content-wrapper">
@@ -10,18 +56,18 @@ const Register = () => {
                     <h1>Sign Up</h1>
 
                     <div className="form-content">
-                        <form >
+                        <form onSubmit={handleSubmit} method="post">
                             <div className="f-content-field">
-                                <input type="text" id="username" placeholder="Enter Your Name" className="ent-num" /><br/>
+                                <input type="text" name="name" onChange={handleChange} placeholder="Enter Your Name" className="ent-num" /><br />
                             </div>
                             <div className="email-info">
-                                <input type="email" id="useremail" placeholder="Enter Your Email" />
+                                <input type="email" name="email" onChange={handleChange} placeholder="Enter Your Email" />
                             </div>
                             <div className="password-content">
-                                <input type="password" id="userpassword" placeholder="Enter Your password" />
+                                <input type="password" name="password" onChange={handleChange} placeholder="Enter Your Password" />
                             </div>
                             <div className="password-content">
-                                <input type="password" id="userconfirmpassword" placeholder="Comfirm Password" />
+                                <input type="password" name="confirmPassword" onChange={handleChange} placeholder="Comfirm Password" />
                             </div>
                             <div className="remember-me">
                                 <input type="checkbox" />
