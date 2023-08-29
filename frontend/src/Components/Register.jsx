@@ -3,7 +3,7 @@ import "../Css/style.css"
 import "../Css/responsive.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import Toast from "react-hot-toast";
 import axios from "axios";
 
 const Register = () => {
@@ -18,33 +18,29 @@ const Register = () => {
         event.preventDefault();
         console.log("hiiiii");
         const { name, email, password, confirmPassword } = userData;
-        if (!name || !email || !password || !confirmPassword)alert("Please fill all the fields.")
-        if (password.length < 5 || confirmPassword.length < 5)alert("Password length should be greater than 5.")
-        if (password !== confirmPassword) alert("Passsword and confirm password not matched.")
-        console.log("afhiii");
+        if (!name || !email || !password || !confirmPassword) {return Toast.error("Please fill all the fields.")}
+        if (password.length < 5 || confirmPassword.length < 5) {return Toast.error("Password length should be greater than 5.")}
+        if (password !== confirmPassword){ return Toast.error("Passsword and confirm password not matched.")}
         try {
-            console.log("inside try jsx");
-
             const response = await axios.post('http://localhost:3000/api/user/register', {
                 name: userData.name,
                 email: userData.email,
                 password: userData.password,
                 confirmPassword: userData.confirmPassword
             })
-            console.log("response after axios", userData);
             if (response.data.success) {
                 setuserData({ name: '', email: '', password: '', confirmPassword: '' })
                 router('/login')
-                alert(response.data.success)
+                return Toast.success(response.data.success)
             } else {
-              alert(response.data.message)
+                return Toast.error(response.data.message)
             }
 
         } catch (err) {
             if (err.response && err.response.data && err.response.data.message) {
-              alert(err.response.data.message);
+                return Toast.error(err.response.data.message);
             } else {
-              alert("An error occurred. Please try again later.");
+                return Toast.error("An error occurred. Please try again later.");
             }
         }
     }

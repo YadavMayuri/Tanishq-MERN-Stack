@@ -1,8 +1,60 @@
 import React from "react";
-import "../Css/style.css"
-import "../Css/responsive.css"
+import "../Css/style.css";
+import "../Css/responsive.css";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Toast from "react-hot-toast";
+import axios from "axios";
+import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
+    const [userData, setUserData] = useState({ email: "", password: "" });
+    const router = useNavigate();
+    const { dispatch, state } = useContext(AuthContext)
+    console.log(state, "state from context into login component")
+
+    const handleChange = (event) => {
+        setUserData({ ...userData, [event.target.name]: event.target.value });
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const { email, password } = userData;
+
+        if (!email || !password) {
+            return Toast.error("Email and password are required.");
+        }
+
+        try {
+            const response = await axios.post('http://localhost:3000/api/user/login', {
+                email: userData.email,
+                password: userData.password,
+            }
+            );
+
+            if (response.data.success) {
+                dispatch({
+                    type: "LOGIN",
+                    payload: response.data.user
+                })
+                console.log(response.data.user);
+                localStorage.setItem("TanishqJwtToken", JSON.stringify(response.data.token))
+                setUserData({ email: "", password: "" });
+                router('/');
+                Toast.success(response.data.success);
+            } else {
+                Toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
+                Toast.error(err.response.data.message);
+            } else {
+                Toast.error("An error occurred. Please try again later.");
+            }
+        }
+    };
     return (
         <div>
             <div className="login-screen">
@@ -10,12 +62,12 @@ const Login = () => {
                     <div className="left-login-content">
                         <h1>Login </h1>
                         <div className="form-content">
-                            <form action="" onsubmit="login(event)">
+                            <form action="" onSubmit={handleSubmit}>
                                 <div className="email-info">
-                                    <input type="email" id="useremail" placeholder="Enter Your Email" />
+                                    <input type="email" onChange={handleChange}  name="email" placeholder="Enter Your Email" />
                                 </div>
                                 <div className="password-content">
-                                    <input type="password" id="userpassword" placeholder="Enter Your password" />
+                                    <input type="password" onChange={handleChange}  name="password" placeholder="Enter Your password" />
                                 </div>
                                 <div className="remember-me">
                                     <input type="checkbox" />

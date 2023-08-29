@@ -4,12 +4,44 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import HandleAuthContext from './Context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <App />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: '',
+          duration: 2000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+            fontSize: '14px',
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 2000,
+            theme: {
+              primary: 'green',
+              secondary: 'black',
+              fontSize: '14px',
+
+            },
+          },
+        }}
+      />
+      <HandleAuthContext>
+        <App />
+      </HandleAuthContext>
     </BrowserRouter>
   </React.StrictMode>
 );

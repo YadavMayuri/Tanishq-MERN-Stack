@@ -1,9 +1,14 @@
 import React from "react";
-import "../Css/style.css"
-import "../Css/responsive.css"
+import "../Css/style.css";
+import "../Css/responsive.css";
 import * as Icon from 'react-bootstrap-icons';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+    const { state, dispatch } = useContext(AuthContext)
+    const router = useNavigate()
     return (
         <div>
             <div id="screen">
@@ -61,10 +66,18 @@ const Home = () => {
                                     </div>
                                     <div className="top-right-menu-name">cart</div>
                                 </div>
+                                {state.user ? (
+                                    <div className="" id="logout">
+                                        <Icon.BoxArrowRight className="" />
+                                        <p onClick={() => dispatch({ type: "LOGOUT" })}> Logout</p>
+                                    </div>
+                                ) : (
+                                    <div>  </div>
+                                )}
 
-                                <div id="logout">
+                                {/* <div id="logout">
 
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -227,7 +240,7 @@ const Home = () => {
                                         <h5 className="jwell-name">gold coins</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
 
                                     </div>
@@ -242,7 +255,7 @@ const Home = () => {
                                         <h5 className="jwell-name">earrings</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -256,7 +269,7 @@ const Home = () => {
                                         <h5 className="jwell-name">pendants</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +283,7 @@ const Home = () => {
                                         <h5 className="jwell-name">Engagement rings</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +297,7 @@ const Home = () => {
                                         <h5 className="jwell-name">chains</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -298,7 +311,7 @@ const Home = () => {
                                         <h5 className="jwell-name">bangles</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -315,7 +328,7 @@ const Home = () => {
                                         <h5 className="jwell-name">finger rings</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +342,7 @@ const Home = () => {
                                         <h5 className="jwell-name">mangalsutras</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -343,7 +356,7 @@ const Home = () => {
                                         <h5 className="jwell-name">neckwear</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +370,7 @@ const Home = () => {
                                         <h5 className="jwell-name">bracelets</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -371,7 +384,7 @@ const Home = () => {
                                         <h5 className="jwell-name">nose pins</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -385,7 +398,7 @@ const Home = () => {
                                         <h5 className="jwell-name">pendant sets</h5>
                                         <div className="explore-btn-and-arrow-wrap">
                                             <span className="e-expolre-txt">Explore</span>
-                                            <span className="e-card-next-icon"><Icon.ChevronRight/></span>
+                                            <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -421,7 +434,7 @@ const Home = () => {
                                 </div>
                                 <div className="c-explore-now">
                                     <p className="c-epx-now">Explore now</p>
-                                    <span><Icon.ChevronRight/></span>
+                                    <span><Icon.ChevronRight /></span>
                                 </div>
                             </div>
                         </a>
@@ -434,7 +447,7 @@ const Home = () => {
                                     exclusive coins
                                 </div>
                                 <div className="c-explore-now">
-                                    <p>Explore now <span><Icon.ChevronRight/></span></p>
+                                    <p>Explore now <span><Icon.ChevronRight /></span></p>
                                 </div>
                             </div>
                         </a>
@@ -447,7 +460,7 @@ const Home = () => {
                                     stunning every ear
                                 </div>
                                 <div className="c-explore-now">
-                                    <p>Explore now <span><Icon.ChevronRight/></span></p>
+                                    <p>Explore now <span><Icon.ChevronRight /></span></p>
                                 </div>
                             </div>
                         </a>
@@ -496,7 +509,7 @@ const Home = () => {
                             </div>
                             <div className="t-s-p-info">
                                 <div className="t-s-p-name">
-                                Delicate Dainty Diamond Finger Ring
+                                    Delicate Dainty Diamond Finger Ring
                                 </div>
                                 <div className="t-s-p-price">
                                     ₹ 5659
@@ -513,7 +526,7 @@ const Home = () => {
                             </div>
                             <div className="t-s-p-info">
                                 <div className="t-s-p-name">
-                                Leafy Pendant and Earrings Set
+                                    Leafy Pendant and Earrings Set
                                 </div>
                                 <div className="t-s-p-price">
                                     ₹ 18033
@@ -607,7 +620,7 @@ const Home = () => {
                                     women
                                 </div>
                                 <div className="c-explore-now">
-                                    <p>Explore now <span><Icon.ChevronRight/></span></p>
+                                    <p>Explore now <span><Icon.ChevronRight /></span></p>
                                 </div>
                             </div>
                         </a>
@@ -622,7 +635,7 @@ const Home = () => {
                                         men
                                     </div>
                                     <div className="c-explore-now">
-                                        <p>Explore now <span><Icon.ChevronRight/></span></p>
+                                        <p>Explore now <span><Icon.ChevronRight /></span></p>
                                     </div>
                                 </div>
                             </a>
@@ -635,7 +648,7 @@ const Home = () => {
                                         kids
                                     </div>
                                     <div className="c-explore-now">
-                                        <p>Explore now <span><Icon.ChevronRight/></span></p>
+                                        <p>Explore now <span><Icon.ChevronRight /></span></p>
                                     </div>
                                 </div>
                             </a>
@@ -793,10 +806,10 @@ const Home = () => {
                         </div>
                         <div className="footer-links-heading">
                             <h3 className="footer-link-txt">contact us</h3>
-                            <a href="" className="footer-link"><span><Icon.ChatLeft/></span><span>write to us</span>
+                            <a href="" className="footer-link"><span><Icon.ChatLeft /></span><span>write to us</span>
                             </a>
-                            <a href="" className="footer-link"><span><Icon.Telephone/></span>1800-266-0123 </a>
-                            <a href="" className="footer-link"><span><Icon.Envelope/></span>chat with us </a>
+                            <a href="" className="footer-link"><span><Icon.Telephone /></span>1800-266-0123 </a>
+                            <a href="" className="footer-link"><span><Icon.Envelope /></span>chat with us </a>
                         </div>
                         <div className="collapse-link-group">
                             <div className="link-closable">
@@ -828,13 +841,13 @@ const Home = () => {
                                 </div>
                                 <div className="social-media-icons">
                                     <div className="s-m-icon">
-                                    <Icon.Facebook size={20} />
+                                        <Icon.Facebook size={20} />
                                     </div>
                                     <div className="s-m-icon">
-                                    <Icon.Twitter size={20} />
+                                        <Icon.Twitter size={20} />
                                     </div>
                                     <div className="s-m-icon">
-                                    <Icon.Instagram size={20} />
+                                        <Icon.Instagram size={20} />
                                     </div>
                                 </div>
                             </div>

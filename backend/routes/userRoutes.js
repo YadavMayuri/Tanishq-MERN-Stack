@@ -1,10 +1,11 @@
 import express from "express"
-import { Register } from "../controllers/userControllers.js";
-import { RegisterChecks } from "../middleware/authMiddleware.js";
+import { Login, Register, getCurrentUser } from "../controllers/userControllers.js";
 
 const userRouter = express.Router()
 
-userRouter.post('/register',RegisterChecks,Register)
+userRouter.post('/register',Register)
+userRouter.post('/login',Login)
+userRouter.post('/getCurrentUser',getCurrentUser)
 
 
 export default userRouter;
