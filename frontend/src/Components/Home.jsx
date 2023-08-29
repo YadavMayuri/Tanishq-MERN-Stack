@@ -31,53 +31,60 @@ const Home = () => {
                             <div className="search-product">
                                 <input type="text" placeholder="Search for Gold Jewellery, Diamond Jewellery and more…" />
                                 <div className="icon">
-                                    <Icon.Camera />
+                                    <Icon.Camera className="searchBoxIcons" />
                                 </div>
                                 <div className="icon">
-                                    <Icon.Mic />
+                                    <Icon.Mic  className="searchBoxIcons"/>
                                 </div>
                                 <div className="icon">
-                                    <Icon.Search />
+                                    <Icon.Search  className="searchBoxIcons"/>
                                 </div>
                             </div>
 
                             <div className="top-right-menu-wrapper">
                                 <div className="top-right-menu">
                                     <div className="single-menu">
-                                        <Icon.Shop />
+                                        <Icon.Shop className="smIcons"/>
                                     </div>
                                     <div className="top-right-menu-name">stores</div>
                                 </div>
                                 <div className="top-right-menu">
-                                    <div className="single-menu">
-                                        <Icon.Person />
-                                    </div>
-                                    <div className="top-right-menu-name" id="switch">account</div>
+                                    {state.user ? (
+                                        <div className="">
+                                            <Icon.Person className="smIcons" />
+                                            <p className="top-right-menu-name">{state.user.name}</p>
+                                        </div>
+                                    ) : (
+                                        <div className="icons">
+                                            <Icon.Person className="smIcons" />
+                                            <p onClick={() => router('/login')} className="top-right-menu-name">Profile</p>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="top-right-menu">
                                     <div className="single-menu">
-                                        <Icon.Heart />
+                                        <Icon.Heart className="smIcons"/>
                                     </div>
                                     <div className="top-right-menu-name">wishlist</div>
                                 </div>
                                 <div className="top-right-menu">
                                     <div className="single-menu">
-                                        <Icon.Cart />
+                                        <Icon.Cart className="smIcons" />
                                     </div>
                                     <div className="top-right-menu-name">cart</div>
                                 </div>
+
                                 {state.user ? (
-                                    <div className="" id="logout">
-                                        <Icon.BoxArrowRight className="" />
-                                        <p onClick={() => dispatch({ type: "LOGOUT" })}> Logout</p>
+                                    <div className="top-right-menu">
+                                        <div className="single-menu" id="logout">
+                                            <Icon.BoxArrowRight className="smIcons" />
+                                        </div>
+                                        <p onClick={() => dispatch({ type: "LOGOUT" })} className="top-right-menu-name" > Logout</p>
                                     </div>
                                 ) : (
                                     <div>  </div>
                                 )}
 
-                                {/* <div id="logout">
-
-                                </div> */}
                             </div>
                         </div>
 
