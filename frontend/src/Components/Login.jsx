@@ -1,7 +1,7 @@
 import React from "react";
 import "../Css/style.css";
 import "../Css/responsive.css";
-import { useContext, useState } from "react";
+import { useContext, useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Toast from "react-hot-toast";
 import axios from "axios";
@@ -27,7 +27,7 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/api/user/login', {
+            const response = await axios.post('http://localhost:3000/api/login', {
                 email: userData.email,
                 password: userData.password,
             }
@@ -55,6 +55,14 @@ const Login = () => {
             }
         }
     };
+
+    useEffect(()=>{
+        if(state?.user?.name){
+            Toast.success("You are already logged in.")
+            router('/')
+        }
+    },[state])
+
     return (
         <div>
             <div className="login-screen">

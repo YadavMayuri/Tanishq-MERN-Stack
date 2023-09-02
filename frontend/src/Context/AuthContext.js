@@ -28,7 +28,7 @@ const HandleAuthContext = ({ children }) => {
             const token = JSON.parse(localStorage.getItem("TanishqJwtToken"))
             console.log("token here",token);
             if (token) {
-                const response = await axios.post("http://localhost:3000/api/user/getCurrentUser", { token })
+                const response = await axios.post("http://localhost:3000/api/getCurrentUser", { token })
                 console.log(response,"response here");
                 if (response.data.success) {
                     dispatch({

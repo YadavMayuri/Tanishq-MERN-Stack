@@ -1,12 +1,16 @@
 import React from "react";
 import "../Css/style.css"
 import "../Css/responsive.css"
-import { useState } from "react";
+import { useState,useEffect,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Toast from "react-hot-toast";
 import axios from "axios";
+import { AuthContext } from "../Context/AuthContext";
 
 const Register = () => {
+
+    const { state } = useContext(AuthContext)
+
     const [userData, setuserData] = useState({ name: '', email: '', password: '', confirmPassword: '' })
     const router = useNavigate()
 
@@ -22,7 +26,7 @@ const Register = () => {
         if (password.length < 5 || confirmPassword.length < 5) {return Toast.error("Password length should be greater than 5.")}
         if (password !== confirmPassword){ return Toast.error("Passsword and confirm password not matched.")}
         try {
-            const response = await axios.post('http://localhost:3000/api/user/register', {
+            const response = await axios.post('http://localhost:3000/api/register', {
                 name: userData.name,
                 email: userData.email,
                 password: userData.password,
@@ -44,6 +48,14 @@ const Register = () => {
             }
         }
     }
+
+    
+    useEffect(() => {
+        if (state?.user?.name) {
+            Toast.success("You are already logged in.")
+            router('/')
+        }
+    }, [state])
 
     return (
         <div className="register-screen">

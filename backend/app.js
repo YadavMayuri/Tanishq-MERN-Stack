@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import userRouter from "./routes/userRoutes.js";
 import mongoose from "mongoose";
 import cors from "cors"
+import productRouter from "./routes/productRoutes.js";
 dotenv.config()
 
 const app = express()
@@ -13,7 +14,9 @@ const app = express()
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
-app.use('/api/user',userRouter)
+app.use('/api',userRouter)
+app.use('/api',productRouter)
+
 
 
 mongoose.connect("mongodb+srv://mayuriyadav54:HGU1ZbJCNcqlTu0z@cluster0.s9gcceb.mongodb.net/Tanishq-Mern-DB")
