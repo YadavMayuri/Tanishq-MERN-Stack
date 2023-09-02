@@ -37,3 +37,19 @@ export const getAllProducts = async (req, res) => {
         return res.status(500).json({ success: false, message: error });
     }
 }
+
+
+export const getSingleProduct = async (req,res)=>{
+    try{
+        const id = req.params.id;
+        const response = await Products.findById({_id:id}).exec();
+        console.log(response,"response here----------");
+        if(response){
+            return res.status(200).json({success:true,response})
+        }else{
+            return res.status(404).json({message:"Products not found."})
+        }
+    }catch(err){
+        return res.status(500).json({message:err})
+    }
+}

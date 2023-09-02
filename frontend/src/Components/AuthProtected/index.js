@@ -13,9 +13,9 @@ const AuthProtected =({children})=>{
         return(children)
     }else{
         return(
-            <div style={{marginTop:"80px",marginLeft:"5rem"}}>
-                <h1 style={{ marginTop: "20px",fontSize:"1.6rem" }}>This page is Auth protected. Do login.</h1>
-                <button onClick={()=>router('/login')} style={{ marginTop: "20px",backgroundColor:"maroon",color:"white",outline:"none",border:"none",padding:"1rem",cursor:"pointer" }}>Login</button>
+            <div style={{width:"60%",margin:"8rem auto"}}>
+                <h1 style={{ marginTop: "20px",fontSize:"2.8rem",textAlign:"center"  }}>This page requires login to access. Please log in first.</h1>
+                <button onClick={()=>router('/login')} style={{ margin: "4rem auto",backgroundColor:"maroon",color:"white",outline:"none",border:"none",padding:"1rem 4rem",cursor:"pointer",display:"block",fontWeight:"700",fontSize:"1.6rem" }}>Login</button>
             </div>
         )
     }

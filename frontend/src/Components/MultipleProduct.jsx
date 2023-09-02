@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const MultipleProduct = () => {
     const router = useNavigate()
@@ -32,25 +34,55 @@ const MultipleProduct = () => {
         getProducts()
     }, [])
     return (
+
+
         <>
-            <h1 style={{ marginTop: "30px",textAlign:"center" }}>Multiple products</h1>
-            {/* <button onClick={() => router('/singleProduct/2521')} className="btn btn-primary mt-3">Redirect to single product</button> */}
 
-            {products?.length ? <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly",marginTop:"30px",fontFamily:"Times New Roman" }}>
+            <Navbar />
 
-                {products.map((product) => (
-                    <div onClick={() => router(`/singleProduct/${product._id}`)} style={{ width: "330px", border: "1px solid lightgray",cursor:"pointer",padding:"1.4rem" }}>
-                        <img src={product.image} alt="" style={{ width: "100%", height: "300px", objectFit: "contain" }} />
-                        <p  style={{ fontSize: "16px", textAlign: "left",marginTop:".6rem" }}>Product ID : {product._id}</p>
-                        <p  style={{ fontSize: "16px", textAlign: "left",marginTop:".6rem" }}>Product Name : {product.name}</p>
-                        <p style={{ fontSize: "16px", textAlign: "left",marginTop:".6rem" }}>Product Price : {product.price}</p>
+            {products?.length ?
+                <div>
+                    <div class="products-container">
+                        <div class="path">
+                            <div class="path-menu">Home | <span>jewellery</span> </div>
+                        </div>
+                        <div class="product-count"><span>Jewellery</span> | 26866 DESIGNS</div>
+                        <div class="function-btn-wrapper">
+                            <button class="function-btn" disabled><i class="fa-solid fa-repeat"></i>Compare</button>
+                            <button class="function-btn">sort by: best sellers<i class="fa-solid fa-angle-down"></i></button>
+                        </div>
+
+
+                        <div class="products-wrapper" id="finalTanishqproducts">
+                            {products.map((product) => (
+                                <div  onClick={() => router(`/singleProduct/${product._id}`)}>
+                                    <div class="products">
+                                        <div class="product-image" id="product-img">
+                                            <img src={product.image} alt="" />
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="hurry">only 1 left in stock</div>
+                                            <div class="p-name" id="for-product-name">{product.name} </div>
+                                            <div class="p-price" id="for-product-price">{product.price} </div>
+                                            <div class="p-path">Women | Finger Ring </div>
+                                            <button class="explorer-btn">explore now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+
                     </div>
+                </div> :
 
-                ))}
+                <div style={{ marginTop: "4rem", marginLeft: "60rem", fontSize: "2.6rem" }}><h3>Loading....</h3></div>}
 
 
-            </div> : <div style={{ marginTop: "4rem",marginLeft:"60rem",fontSize:"1.6rem" }}> <h4>Loading.....</h4> </div>}
+            <Footer />
+
         </>
+
     )
 }
 
