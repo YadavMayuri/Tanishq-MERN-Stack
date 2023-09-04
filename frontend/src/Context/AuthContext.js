@@ -26,10 +26,10 @@ const HandleAuthContext = ({ children }) => {
     useEffect(() => {
         async function getcurrentuser() {
             const token = JSON.parse(localStorage.getItem("TanishqJwtToken"))
-            console.log("token here",token);
+            // console.log("token here",token);
             if (token) {
                 const response = await axios.post("http://localhost:3000/api/getCurrentUser", { token })
-                console.log(response,"response here");
+                // console.log(response,"response here from auth context");
                 if (response.data.success) {
                     dispatch({
                         type: "LOGIN",

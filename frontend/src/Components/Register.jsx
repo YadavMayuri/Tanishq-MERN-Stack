@@ -78,7 +78,7 @@ const Register = () => {
                                 <input type="password" name="confirmPassword" onChange={handleChange} placeholder="Comfirm Password" />
                             </div>
                             <div className="remember-me">
-                                <input type="checkbox" />
+                                <input type="checkbox"  checked readOnly/>
                                 <span>Remember Me</span>
                             </div>
                             <p className="terms-policy">By continuing, I agree to <span className="highlight">Terms of Use</span> &

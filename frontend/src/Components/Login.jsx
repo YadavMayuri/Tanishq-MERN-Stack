@@ -36,9 +36,10 @@ const Login = () => {
             if (response.data.success) {
                 dispatch({
                     type: "LOGIN",
-                    payload: response.data.user
+                    payload: response.data.user,
+                    
                 })
-                console.log(response.data.user);
+                console.log(response.data.user,"user response from login payload");
                 localStorage.setItem("TanishqJwtToken", JSON.stringify(response.data.token))
                 setUserData({ email: "", password: "" });
                 router('/');
@@ -78,7 +79,7 @@ const Login = () => {
                                     <input type="password" onChange={handleChange}  name="password" placeholder="Enter Your password" />
                                 </div>
                                 <div className="remember-me">
-                                    <input type="checkbox" />
+                                    <input type="checkbox" checked  readOnly/>
                                     <span>Remember Me</span>
                                 </div>
                                 <p className="terms-policy">By continuing, I agree to <span className="highlight">Terms of Use</span> &

@@ -10,10 +10,11 @@ import MultipleProduct from './Components/MultipleProduct';
 import SingleProduct from './Components/SingleProduct';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import { Cart } from 'react-bootstrap-icons';
 
 function App() {
   const { state } = useContext(AuthContext);
-  console.log(state,"state from context")
+  // console.log(state,"state from context")
   return (
     <div className="App">
       <Routes>
@@ -25,6 +26,7 @@ function App() {
         <Route exact path='/singleProduct/:id' element={<SingleProduct/>}/>
         <Route exact path='/navbar' element={<Navbar/>}/>
         <Route exact path='/footer' element={<Footer/>}/>
+        <Route exact path='/cart'element={<Cart/>}/>
 
 
       </Routes>

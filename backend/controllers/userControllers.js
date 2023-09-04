@@ -32,14 +32,17 @@ export const Login = async (req, res) => {
         const { email, password } = req.body;
         if (!email || !password) return res.status(400).json({ message: "Please fill all the fields." })
         const response = await Users.findOne({ email }).exec();
+
         if (!response) return res.status(400).json({ message: "User not found" })
         const comparePassword = await bcrypt.compare(password, response.password);
+
         if (!comparePassword) return res.status(400).json({ message: "Credientials not matched." })
 
         const userObj = { userId: response._id, name: response.name, email: response.email }
         const token = jwt.sign({ userId: response._id }, process.env.JwtToken)
+        // console.log(userObj,"userobj from login controller");
 
-        console.log("jwt token",process.env.JwtToken);
+        // console.log("jwt token", process.env.JwtToken);
 
         return res.status(200).json({ success: "Login successful.", user: userObj, token: token })
 
@@ -56,21 +59,75 @@ export const getCurrentUser = async (req, res) => {
 
         if (!token) return res.status(400).json({ success: false, message: "Token is required." })
 
-        const decodedtoken = jwt.verify(token,process.env.JwtToken)
+        const decodedtoken = jwt.verify(token, process.env.JwtToken)
         if (!decodedtoken) return res.status(404).json({ success: false, message: "Invalid token." })
 
         const userId = decodedtoken.userId;
 
         const user = await Users.findById(userId);
-        console.log(user,"user here");
+        // console.log(user, "user here");
         if (user) {
-            const userobj = { userId: user.userId, name: user.name, email: user.email }
+            const userobj = { userId: user._id, name: user.name, email: user.email }
+            // console.log(userobj,"user obj from current user controller");
             return res.status(200).json({ success: true, user: userobj })
+
         } else {
             return res.status(404).json({ success: false, message: "User not found." })
         }
 
     } catch (err) {
-        return res.status(500).json({ success: false, message: "Internal server error."})
+        return res.status(500).json({ success: false, message: "Internal server error." })
     }
 }
+
+
+
+export const addCart = async (req, res) => {
+    try {
+        const { pId, userId } = req.body
+        if (!pId) return res.json({ error: "Product id is required!" })
+        if (!userId) return res.json({ error: "User id is required!" })
+        console.log(pId, userId, "pid,currentUser");
+
+        // Check if the product is already in the user's cart
+        const cUser = await Users.findOne({ _id: userId }).exec();
+        const existingProduct = cUser.cartProduct.includes(pId);
+        console.log(existingProduct, "existingProduct");
+        if (existingProduct) return res.json({ error: "Product already in cart!" });
+
+        const user = await Users.findOneAndUpdate({ _id: userId }, { $push: { cartProduct: pId } }, { new: true }).exec();
+        if (!user) return res.json({ error: "User not found!" });
+        console.log(user, "userData");
+        return res.json({ success: true });
+
+    } catch (err) {
+        console.log(err);
+        return res.json({ error: "Internal server error!" })
+    }
+}
+
+
+export const getCartProducts = async(req,res)=>{
+    try{
+        const {userId}= req.body; 
+        if(!userId)return req.status(400).json({message:"User is required!"})
+
+        const user = await Users.findById(userId).populate('cartProduct')
+        
+        const cartProducts = user?.cartProduct
+        let totalPrice =0;
+        for(const y of cartProducts){
+            totalPrice = totalPrice + y.price
+        }
+        console.log(totalPrice, "total price here");
+        const totalProducts = cartProducts.length
+        console.log(totalProducts,"total products here");
+        return res.status(200).json({cartProducts:cartProducts,totalPrice:totalPrice,totalProducts:totalProducts})
+
+
+    }catch(err){
+        return res.status(500).json({message:"Internal server error!"})
+    }
+}
+
+  

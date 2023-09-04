@@ -50,17 +50,11 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        {/*  <div id="controls">
-                   <label for="slide1"></label>
-                   <label for="slide2"></label>
-                   <label for="slide3"></label>
-                   <label for="slide4"></label>
-                </div>  */}
                         <div id="bullets">
-                            <label for="slide1"></label>
-                            <label for="slide2"></label>
-                            <label for="slide3"></label>
-                            <label for="slide4"></label>
+                            <label htmlFor="slide1"></label>
+                            <label htmlFor="slide2"></label>
+                            <label htmlFor="slide3"></label>
+                            <label htmlFor="slide4"></label>
                         </div>
                     </div>
 
@@ -529,9 +523,9 @@ const Home = () => {
                 <div className="video-review">
                     <iframe width="100%" height="350"
                         src="https://www.youtube.com/embed/omr0ZiQhUAo?autoplay=1&mute=1&controls=0&rel=0&showinfo=0"
-                        title="YouTube video player" frameborder="0"
+                        title="YouTube video player" frameBorder="0"
                         allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
+                        allowFullScreen></iframe>
                     <button className="news-explore-button">Explore more</button>
 
                 </div>

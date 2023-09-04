@@ -9,7 +9,7 @@ const AuthProtected =({children})=>{
     const router = useNavigate()
 
     if(state?.user?.name){
-        toast.success(state?.user?.name)
+        // toast.success(state?.user?.name)
         return(children)
     }else{
         return(

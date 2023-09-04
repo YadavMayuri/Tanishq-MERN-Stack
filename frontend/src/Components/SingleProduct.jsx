@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AuthProtected from "./AuthProtected";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -10,8 +10,7 @@ import { AuthContext } from '../Context/AuthContext';
 import * as Icon from 'react-bootstrap-icons';
 
 const SingleProduct = () => {
-    const router = useNavigate();
-    const { state, dispatch } = useContext(AuthContext)
+    const { state } = useContext(AuthContext)
 
     const { id } = useParams();
     const [product, setProduct] = useState()
@@ -20,13 +19,13 @@ const SingleProduct = () => {
         async function getSingleProduct() {
 
             try {
-                console.log("inside try-----------------------------");
+                // console.log("inside try-----------------------------");
                 const response = await axios.get(`http://localhost:3000/api/getSingleProduct/${id}`)
                 if (response.data.success) {
                     setProduct(response.data.response)
                 }
                 else {
-                    Toast.success(response.data.message)
+                    Toast.error(response.data.message)
                 }
 
             } catch (err) {
@@ -41,7 +40,54 @@ const SingleProduct = () => {
             }
         }
         getSingleProduct()
-    }, [])
+    }, [id])
+
+
+    //add to cart 
+    // async function addProduct() {
+    //     if (id && state?.user?.userId) {
+    //         try {
+               
+    //             console.log(typeof(id),"type of pro id");
+    //             const { data } = await axios.post("http://localhost:3000/api/buyer/addCart",  {pId: id,userId: state?.user?.userId});
+    //             console.log(typeof pId,"type of pro id after ");
+
+    //             if (data.success) {
+    //                 Toast.success(data.message);
+    //             } else {
+    //                 Toast.error(data.message);
+    //             }
+    //         } catch (err) {
+    //             console.log(err);
+    //             Toast.error("Error while adding product to cart!");
+    //         }
+    //     } else {
+    //         Toast.error("Internal server error!");
+    //     }
+    // }
+ 
+    const addProduct = async () =>{
+        if(id && state?.user){
+            try {
+                console.log(typeof(id),"state?.user?.id");
+                const {data} = await axios.post("http://localhost:3000/api/buyer/addCart",{pId : id, userId : state?.user?.userId})
+                console.log(data, "data");
+                if(data.success){
+                    Toast.success("Product added to cart!")
+                }else{
+                    Toast.error(data.error)
+                }
+                
+            } catch (err) {
+                console.log(err);
+                Toast.error("Error while adding product to cart!")
+            }
+        }else{
+            Toast.error("Internal server error!")
+        }
+    }
+
+
 
     return (
         <>
@@ -49,87 +95,87 @@ const SingleProduct = () => {
             <AuthProtected>
                 {product ? (
                     <div>
-                        <div class="main-body">
-                            <div class="sp-container">
-                                <div class="left-product-img-section">
-                                    <div class="product-breadcrumb">
+                        <div className="main-body">
+                            <div className="sp-container">
+                                <div className="left-product-img-section">
+                                    <div className="product-breadcrumb">
                                         <span>Home</span>
                                         <span>|</span>
                                         <span>Diamon Finger Rings</span>
                                         <span>|</span>
                                         <span>{product.name}</span>
                                     </div>
-                                    <div class="product-images-pictures">
-                                        <div class="product-mini-images">
-                                            <div class="mini-img active-img">
+                                    <div className="product-images-pictures">
+                                        <div className="product-mini-images">
+                                            <div className="mini-img active-img">
                                                 <img src={product.image} alt="" />
                                             </div>
-                                            <div class="mini-img">
+                                            <div className="mini-img">
                                                 <img src={product.image} alt="" />
                                             </div>
-                                            <div class="mini-img">
+                                            <div className="mini-img">
                                                 <img src={product.image} alt="" />
                                             </div>
 
                                         </div>
 
-                                        <div class="product-highlight-image">
-                                            <div class="left-swap-arrow">
+                                        <div className="product-highlight-image">
+                                            <div className="left-swap-arrow">
                                                 <Icon.ChevronLeft style={{ fontSize: "2rem", color: "maroon" }} />
                                             </div>
-                                            <div class="main-highlight-img">
+                                            <div className="main-highlight-img">
                                                 <div id="singleProduct"><img src={product.image} alt="" /></div>
 
                                             </div>
-                                            <div class="right-swap-arrow">
+                                            <div className="right-swap-arrow">
                                                 <Icon.ChevronRight style={{ fontSize: "2rem", color: "maroon" }} />
                                             </div>
                                         </div>
                                     </div>
 
-                                    <button class="try-it-on-btn">try it on</button>
+                                    <button className="try-it-on-btn">try it on</button>
                                 </div>
-                                <div class="right-product-decs-section">
-                                    <div class="left-product-info-desc">
-                                        <p class="product-code"> {product._id}</p>
-                                        <div class="product-name-rating">
-                                            <div class="sp-product-name" id="for-product-name">
+                                <div className="right-product-decs-section">
+                                    <div className="left-product-info-desc">
+                                        <p className="product-code"> {product._id}</p>
+                                        <div className="product-name-rating">
+                                            <div className="sp-product-name" id="for-product-name">
                                                 {product.name}
                                             </div>
-                                            <div class="sp-rating-review">
-                                                <span class="sp-star-rating">
+                                            <div className="sp-rating-review">
+                                                <span className="sp-star-rating">
                                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                                 </span>
-                                                <span class="sp-heading-review">
+                                                <span className="sp-heading-review">
                                                     1 Review
                                                 </span>
                                             </div>
-                                            <hr class="sp-hr" />
-                                            <div class="sp-product-para">
+                                            <hr className="sp-hr" />
+                                            <div className="sp-product-para">
                                                 With the grandeur of gold and elegance of diamonds, this floral ring is crafted in 14 karat
                                                 Yellow gold is ideal for occasion wear. Stone clarity I1I2
                                             </div>
-                                            <div class="sp-product-price-wrapper">
-                                                <div class="sp-price-w-d">
-                                                    <div class="price-in-w">
+                                            <div className="sp-product-price-wrapper">
+                                                <div className="sp-price-w-d">
+                                                    <div className="price-in-w">
                                                         price
                                                     </div>
-                                                    <div class="price-in-d" id="for-product-price">
+                                                    <div className="price-in-d" id="for-product-price">
                                                         ₹{product.price}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="sp-price-para-info">
+                                            <div className="sp-price-para-info">
                                                 Price inclusive of all taxes.See full <span><a href="">Price Breakup</a></span>
                                             </div>
-                                            <div class="size-weight-qty-wrapper">
-                                                <div class="size-wrap">
-                                                    <div class="sgq-heading">Size</div>
-                                                    <div class="sp-size-options">
+                                            <div className="size-weight-qty-wrapper">
+                                                <div className="size-wrap">
+                                                    <div className="sgq-heading">Size</div>
+                                                    <div className="sp-size-options">
                                                         <select name="" id="">
                                                             <option value="">16.80mm</option>
                                                             <option value="">17.20mm</option>
@@ -137,86 +183,86 @@ const SingleProduct = () => {
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="weight-wrap">
-                                                    <div class="sgq-heading">Gross Weight</div>
-                                                    <div class="sp-p-weight">1.453g</div>
+                                                <div className="weight-wrap">
+                                                    <div className="sgq-heading">Gross Weight</div>
+                                                    <div className="sp-p-weight">1.453g</div>
                                                 </div>
-                                                <div class="qty-wrap">
-                                                    <div class="sgq-heading">Qty</div>
-                                                    <div class="quantity-content">
-                                                        <div class="d-i-btn">-</div>
-                                                        <div class="qty-amt">1N</div>
-                                                        <div class="d-i-btn">+</div>
+                                                <div className="qty-wrap">
+                                                    <div className="sgq-heading">Qty</div>
+                                                    <div className="quantity-content">
+                                                        <div className="d-i-btn">-</div>
+                                                        <div className="qty-amt">1N</div>
+                                                        <div className="d-i-btn">+</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="sp-price-para-info">
-                                                Weight will increase as per the Size. Check<span><a href="">Sizing Comparsion</a></span>
+                                            <div className="sp-price-para-info">
+                                                Weight will increase as per the Size. Check <span><a href="">Sizing Comparsion</a></span>
                                             </div>
-                                            <div class="gold-purity-diamon-weight">
-                                                <div class="gold-purity"> Gold Purity : 14 Kara</div>
-                                                <div class="diamond-weight"> Diamond Weight: 0.090c</div>
+                                            <div className="gold-purity-diamon-weight">
+                                                <div className="gold-purity"> Gold Purity : 14 Kara</div>
+                                                <div className="diamond-weight"> Diamond Weight: 0.090c</div>
                                             </div>
-                                            <div class="sp-price-para-info">
-                                                Not sure what to buy? Checkout ourk<span><a href="">Buying Guides</a></span>
+                                            <div className="sp-price-para-info">
+                                                Not sure what to buy? Checkout our <span><a href="">Buying Guides</a></span>
                                             </div>
-                                            <div class="add-buy-btns" id="for-add-to-cart-btn">
-                                                {/* <!-- <div id="for-add-to-cart-btn"> </div>
-                            <button class="buy-now-btn"> buy now</button> --> */}
+                                            <div className="add-buy-btns">
+                                                <div id="for-add-to-cart-btn" onClick={addProduct} className="add-to-cart-btn ">Add To Cart </div>
+                                                <button className="buy-now-btn"> Buy Now</button>
                                             </div>
-                                            <hr class="sp-hr-linr" />
-                                            <div class="country-pincode">
-                                                <div class="select-country">
+                                            <hr className="sp-hr-linr" />
+                                            <div className="country-pincode">
+                                                <div className="select-country">
                                                     <select name="" id="">
                                                         <option value="">India </option>
                                                         <option value="">Canada </option>
                                                         <option value="">Germany </option>
                                                     </select>
                                                 </div>
-                                                <div class="pincode">
+                                                <div className="pincode">
                                                     <input type="number" placeholder="Pincode" />
-                                                    <label for=""> check</label>
+                                                    <label> check</label>
                                                 </div>
                                             </div>
-                                            <hr class="sp-hr" />
-                                            <div class="sp-services-info">
-                                                <div class="service-info">
-                                                    <div class="service-img">
+                                            <hr className="sp-hr" />
+                                            <div className="sp-services-info">
+                                                <div className="service-info">
+                                                    <div className="service-img">
                                                         <Icon.Gem style={{ fontSize: "1.8rem" }} />
                                                     </div>
                                                     <p>Purity Guaranteed</p>
                                                 </div>
-                                                <div class="service-info">
-                                                    <div class="service-img">
+                                                <div className="service-info">
+                                                    <div className="service-img">
                                                         <Icon.ArrowLeftRight style={{ fontSize: "1.8rem" }} />
                                                     </div>
                                                     <p>Easy Returns</p>
                                                 </div>
-                                                <div class="service-info">
-                                                    <div class="service-img">
+                                                <div className="service-info">
+                                                    <div className="service-img">
                                                         <Icon.BoxSeam style={{ fontSize: "1.8rem" }} />
                                                     </div>
                                                     <p>Free Shipping across India</p>
                                                 </div>
                                             </div>
-                                            <div class="question">
+                                            <div className="question">
                                                 Still Confused What to Buy?
                                             </div>
-                                            <div class="ans">
+                                            <div className="ans">
                                                 Get on live video call with our design experts, or visit your nearest Tanishq store to get
                                                 an closer look and know more about the product.
                                             </div>
-                                            <button class="talk-to-expert">Talk to an Expert</button>
-                                            <hr class="sp-hr" />
+                                            <button className="talk-to-expert">Talk to an Expert</button>
+                                            <hr className="sp-hr" />
 
 
                                         </div>
                                     </div>
-                                    <div class="wishlist-send-icon-wrapper">
-                                        <div class="wishlist-icon">
+                                    <div className="wishlist-send-icon-wrapper">
+                                        <div className="wishlist-icon">
                                             <Icon.Heart style={{ fontSize: "2rem" }} />
                                         </div>
-                                        <div class="send-icon">
+                                        <div className="send-icon">
                                             <Icon.Share style={{ fontSize: "2rem" }} />
                                         </div>
                                     </div>
@@ -225,150 +271,150 @@ const SingleProduct = () => {
                                 </div>
                             </div>
 
-                            <div class="banner-img">
+                            <div className="banner-img">
                                 <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites/default/dw05fc6be3/images/pdp/Promises_Banner_DesktopU.jpg" alt="" />
                             </div>
 
-                            <div class="product-details-specs">
-                                <div class="sp-product-details-s">
-                                    <div class="sp-product-details-heading">
+                            <div className="product-details-specs">
+                                <div className="sp-product-details-s">
+                                    <div className="sp-product-details-heading">
                                         Product details
                                     </div>
-                                    <hr class="sp-hr-linr" />
-                                    <p class="para-section">
+                                    <hr className="sp-hr-linr" />
+                                    <p className="para-section">
                                         Brighten up your look with this gorgeous finger ring set in rose gold and embellished with diamonds.
                                     </p>
-                                    <div class="sp-specifications">
-                                        <div class="sp-specs-heading">specifications</div>
-                                        <div class="sp-change-left-arrows">
-                                        <Icon.ChevronLeft style={{fontSize:"2rem"}}/></div>
-                                        <div class="sp-change-right-arrows"><Icon.ChevronRight style={{fontSize:"2rem"}}/></div>
+                                    <div className="sp-specifications">
+                                        <div className="sp-specs-heading">specifications</div>
+                                        <div className="sp-change-left-arrows">
+                                            <Icon.ChevronLeft style={{ fontSize: "2rem" }} /></div>
+                                        <div className="sp-change-right-arrows"><Icon.ChevronRight style={{ fontSize: "2rem" }} /></div>
 
                                     </div>
-                                    <div class="sp-product-detail-section">
-                                        <div class="sp-spec-name-and-details">
-                                            <div class="sp-specs-name">Quantity : </div>
-                                            <div class="sp-specs-description">1 </div>
+                                    <div className="sp-product-detail-section">
+                                        <div className="sp-spec-name-and-details">
+                                            <div className="sp-specs-name">Quantity : </div>
+                                            <div className="sp-specs-description">1 </div>
                                         </div>
-                                        <div class="sp-spec-name-and-details">
-                                            <div class="sp-specs-name">Brand : </div>
-                                            <div class="sp-specs-description">Mia </div>
+                                        <div className="sp-spec-name-and-details">
+                                            <div className="sp-specs-name">Brand : </div>
+                                            <div className="sp-specs-description">Mia </div>
                                         </div>
-                                        <div class="sp-spec-name-and-details">
-                                            <div class="sp-specs-name">Gender : </div>
-                                            <div class="sp-specs-description">Women </div>
+                                        <div className="sp-spec-name-and-details">
+                                            <div className="sp-specs-name">Gender : </div>
+                                            <div className="sp-specs-description">Women </div>
                                         </div>
-                                        <div class="sp-spec-name-and-details">
-                                            <div class="sp-specs-name">Collestion : </div>
-                                            <div class="sp-specs-description">Core 20 </div>
+                                        <div className="sp-spec-name-and-details">
+                                            <div className="sp-specs-name">Collestion : </div>
+                                            <div className="sp-specs-description">Core 20 </div>
                                         </div>
-                                        <div class="sp-spec-name-and-details">
-                                            <div class="sp-specs-name">product : </div>
-                                            <div class="sp-specs-description">finger ring </div>
+                                        <div className="sp-spec-name-and-details">
+                                            <div className="sp-specs-name">product : </div>
+                                            <div className="sp-specs-description">finger ring </div>
                                         </div>
                                     </div>
-                                    <div class="product-info-drop-down-list">
-                                        <div class="sp-dropdown">
-                                            <h3 class="sp-dropdown-heading">Price breakup</h3>
-                                            <span><i class="fa-solid fa-angle-down"></i></span>
+                                    <div className="product-info-drop-down-list">
+                                        <div className="sp-dropdown">
+                                            <h3 className="sp-dropdown-heading">Price breakup</h3>
+                                            <span><i className="fa-solid fa-angle-down"></i></span>
                                         </div>
-                                        <div class="sp-dropdown">
-                                            <h3 class="sp-dropdown-heading">Product Story</h3>
-                                            <span><i class="fa-solid fa-angle-down"></i></span>
+                                        <div className="sp-dropdown">
+                                            <h3 className="sp-dropdown-heading">Product Story</h3>
+                                            <span><i className="fa-solid fa-angle-down"></i></span>
                                         </div>
-                                        <div class="sp-dropdown">
-                                            <h3 class="sp-dropdown-heading">more information</h3>
-                                            <span><i class="fa-solid fa-angle-down"></i></span>
+                                        <div className="sp-dropdown">
+                                            <h3 className="sp-dropdown-heading">more information</h3>
+                                            <span><i className="fa-solid fa-angle-down"></i></span>
                                         </div>
 
                                     </div>
 
                                 </div>
-                                <div class="sp-product-highlight-image">
+                                <div className="sp-product-highlight-image">
                                     <img src="https://staticimg.titan.co.in/Tanishq/Catalog/502015FEPAA02_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
                                 </div>
                             </div>
 
-                            <div class="bottom-section-container">
-                                <h2 class="sp-reviews-heading"> Reviews</h2>
-                                <hr class="sp-hr" />
+                            <div className="bottom-section-container">
+                                <h2 className="sp-reviews-heading"> Reviews</h2>
+                                <hr className="sp-hr" />
                             </div>
-                            <div class="star-rating-reviews">
-                                <div class="star-icon-rate">
+                            <div className="star-rating-reviews">
+                                <div className="star-icon-rate">
                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                     <Icon.Star style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                 </div>
-                                <div class="revies-count">0 Reviews</div>
+                                <div className="revies-count">0 Reviews</div>
                             </div>
-                            <div class="write-review-ask-que">
-                                <button class="w-a-rev">Write a review</button>
-                                <button class="a-a-que">ask a question</button>
+                            <div className="write-review-ask-que">
+                                <button className="w-a-rev">Write a review</button>
+                                <button className="a-a-que">ask a question</button>
                             </div>
-                            <div class="sp-reviews-questions">
-                                <span class="link-for-q-r  active-link-q-r">Reviews</span>
-                                <span class="link-for-q-r">questions</span>
+                            <div className="sp-reviews-questions">
+                                <span className="link-for-q-r  active-link-q-r">Reviews</span>
+                                <span className="link-for-q-r">questions</span>
                             </div>
-                            <hr class="sp-hr-line" />
-                            <div class="star-rating-link-q-r">
+                            <hr className="sp-hr-line" />
+                            <div className="star-rating-link-q-r">
                                 <Icon.StarFill style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                 <Icon.StarFill style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                 <Icon.StarFill style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                 <Icon.StarFill style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                                 <Icon.StarFill style={{ fontSize: "1.8rem", color: "maroon", marginRight: ".4rem" }} />
                             </div>
-                            <button class="first-one-write-review"> Be the first to write a review</button>
+                            <button className="first-one-write-review"> Be the first to write a review</button>
 
-                            <div class="customers-views-product">
-                                <div class="customer-view-heading"> Customers Who Viewed This Also Viewed</div>
-                                <div class="products-wrapper">
+                            <div className="customers-views-product">
+                                <div className="customer-view-heading"> Customers Who Viewed This Also Viewed</div>
+                                <div className="products-wrapper">
                                     <div>
-                                        <div class="products">
-                                            <div class="product-image">
+                                        <div className="products">
+                                            <div className="product-image">
                                                 <img src="https://staticimg.titan.co.in/Tanishq/Catalog/50D2I1FCTAA02_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
                                             </div>
-                                            <div class="product-info">
-                                                <div class="p-name">Fancy Floral Diamond Finger Ring</div>
-                                                <div class="p-price">₹ 39913 </div>
-                                                <button class="explorer-btn">explore now</button>
+                                            <div className="product-info">
+                                                <div className="p-name">Fancy Floral Diamond Finger Ring</div>
+                                                <div className="p-price">₹ 39913 </div>
+                                                <button className="explorer-btn">explore now</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="products">
-                                            <div class="product-image">
+                                        <div className="products">
+                                            <div className="product-image">
                                                 <img src="https://staticimg.titan.co.in/Tanishq/Catalog/500067FYAAA12_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
                                             </div>
-                                            <div class="product-info">
-                                                <div class="p-name">Alluring Floral Diamond Finger Ring</div>
-                                                <div class="p-price">₹ 16524 </div>
-                                                <button class="explorer-btn">explore now</button>
+                                            <div className="product-info">
+                                                <div className="p-name">Alluring Floral Diamond Finger Ring</div>
+                                                <div className="p-price">₹ 16524 </div>
+                                                <button className="explorer-btn">explore now</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="products">
-                                            <div class="product-image">
+                                        <div className="products">
+                                            <div className="product-image">
                                                 <img src="https://staticimg.titan.co.in/Tanishq/Catalog/500496FDAAB09_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
                                             </div>
-                                            <div class="product-info">
-                                                <div class="p-name">Sleek Seven Stone Floral Motif Diamond Finger Ring</div>
-                                                <div class="p-price">₹ 18093 </div>
-                                                <button class="explorer-btn">explore now</button>
+                                            <div className="product-info">
+                                                <div className="p-name">Sleek Seven Stone Floral Motif Diamond Finger Ring</div>
+                                                <div className="p-price">₹ 18093 </div>
+                                                <button className="explorer-btn">explore now</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="products">
-                                            <div class="product-image">
+                                        <div className="products">
+                                            <div className="product-image">
                                                 <img src="https://staticimg.titan.co.in/Tanishq/Catalog/502015FEPAA02_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
                                             </div>
-                                            <div class="product-info">
-                                                <div class="p-name">Lustrous Diamond Gold Finger Ring</div>
-                                                <div class="p-price">₹ 21811 </div>
-                                                <button class="explorer-btn">explore now</button>
+                                            <div className="product-info">
+                                                <div className="p-name">Lustrous Diamond Gold Finger Ring</div>
+                                                <div className="p-price">₹ 21811 </div>
+                                                <button className="explorer-btn">explore now</button>
                                             </div>
                                         </div>
                                     </div>

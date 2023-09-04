@@ -7,4 +7,5 @@ productRouter.post('/addProduct',addProduct)
 productRouter.get('/getAllProducts',getAllProducts)
 productRouter.get('/getSingleProduct/:id',getSingleProduct)
 
+
 export default productRouter;

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import "../Css/style.css";
+import "../Css/responsive.css";
 
 const MultipleProduct = () => {
     const router = useNavigate()
@@ -19,6 +21,8 @@ const MultipleProduct = () => {
                 console.log(response.data.products);
                 if (response.data.success) {
                     setProducts(response.data.products)
+                }else{
+                    toast.error(response.data.message)
                 }
 
             } catch (err) {
@@ -42,30 +46,30 @@ const MultipleProduct = () => {
 
             {products?.length ?
                 <div>
-                    <div class="products-container">
-                        <div class="path">
-                            <div class="path-menu">Home | <span>jewellery</span> </div>
+                    <div className="products-container">
+                        <div className="path">
+                            <div className="path-menu">Home | <span>jewellery</span> </div>
                         </div>
-                        <div class="product-count"><span>Jewellery</span> | 26866 DESIGNS</div>
-                        <div class="function-btn-wrapper">
-                            <button class="function-btn" disabled><i class="fa-solid fa-repeat"></i>Compare</button>
-                            <button class="function-btn">sort by: best sellers<i class="fa-solid fa-angle-down"></i></button>
+                        <div className="product-count"><span>Jewellery</span> | 26866 DESIGNS</div>
+                        <div className="function-btn-wrapper">
+                            <button className="function-btn" disabled><i className="fa-solid fa-repeat"></i>Compare</button>
+                            <button className="function-btn">sort by: best sellers<i className="fa-solid fa-angle-down"></i></button>
                         </div>
 
 
-                        <div class="products-wrapper" id="finalTanishqproducts">
+                        <div className="products-wrapper" id="finalTanishqproducts">
                             {products.map((product) => (
-                                <div  onClick={() => router(`/singleProduct/${product._id}`)}>
-                                    <div class="products">
-                                        <div class="product-image" id="product-img">
+                                <div  key={product._id} onClick={() => router(`/singleProduct/${product._id}`)}>
+                                    <div className="products">
+                                        <div className="product-image" id="product-img">
                                             <img src={product.image} alt="" />
                                         </div>
-                                        <div class="product-info">
-                                            <div class="hurry">only 1 left in stock</div>
-                                            <div class="p-name" id="for-product-name">{product.name} </div>
-                                            <div class="p-price" id="for-product-price">{product.price} </div>
-                                            <div class="p-path">Women | Finger Ring </div>
-                                            <button class="explorer-btn">explore now</button>
+                                        <div className="product-info">
+                                            <div className="hurry">only 1 left in stock</div>
+                                            <div className="p-name" id="for-product-name">{product.name} </div>
+                                            <div className="p-price" id="for-product-price">{product.price} </div>
+                                            <div className="p-path">Women | Finger Ring </div>
+                                            <button className="explorer-btn">explore now</button>
                                         </div>
                                     </div>
                                 </div>
