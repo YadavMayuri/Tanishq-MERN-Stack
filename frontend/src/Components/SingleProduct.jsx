@@ -10,7 +10,7 @@ import { AuthContext } from '../Context/AuthContext';
 import * as Icon from 'react-bootstrap-icons';
 
 const SingleProduct = () => {
-    const { state } = useContext(AuthContext)
+    const { state,dispatch } = useContext(AuthContext)
 
     const { id } = useParams();
     const [product, setProduct] = useState()
@@ -43,29 +43,6 @@ const SingleProduct = () => {
     }, [id])
 
 
-    //add to cart 
-    // async function addProduct() {
-    //     if (id && state?.user?.userId) {
-    //         try {
-               
-    //             console.log(typeof(id),"type of pro id");
-    //             const { data } = await axios.post("http://localhost:3000/api/buyer/addCart",  {pId: id,userId: state?.user?.userId});
-    //             console.log(typeof pId,"type of pro id after ");
-
-    //             if (data.success) {
-    //                 Toast.success(data.message);
-    //             } else {
-    //                 Toast.error(data.message);
-    //             }
-    //         } catch (err) {
-    //             console.log(err);
-    //             Toast.error("Error while adding product to cart!");
-    //         }
-    //     } else {
-    //         Toast.error("Internal server error!");
-    //     }
-    // }
- 
     const addProduct = async () =>{
         if(id && state?.user){
             try {
@@ -73,6 +50,11 @@ const SingleProduct = () => {
                 const {data} = await axios.post("http://localhost:3000/api/buyer/addCart",{pId : id, userId : state?.user?.userId})
                 console.log(data, "data");
                 if(data.success){
+                    dispatch({
+                        type: "AddToCart",
+                        payload: data.product,
+                        
+                    })
                     Toast.success("Product added to cart!")
                 }else{
                     Toast.error(data.error)

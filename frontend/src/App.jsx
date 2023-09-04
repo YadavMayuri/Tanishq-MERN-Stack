@@ -10,7 +10,7 @@ import MultipleProduct from './Components/MultipleProduct';
 import SingleProduct from './Components/SingleProduct';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import { Cart } from 'react-bootstrap-icons';
+import Cart from './Components/Cart';
 
 function App() {
   const { state } = useContext(AuthContext);

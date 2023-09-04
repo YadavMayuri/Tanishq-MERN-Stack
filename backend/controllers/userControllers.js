@@ -97,8 +97,8 @@ export const addCart = async (req, res) => {
 
         const user = await Users.findOneAndUpdate({ _id: userId }, { $push: { cartProduct: pId } }, { new: true }).exec();
         if (!user) return res.json({ error: "User not found!" });
-        console.log(user, "userData");
-        return res.json({ success: true });
+        const product = user.cartProduct
+        return res.json({ success: true ,message:"product added to cart!",product});
 
     } catch (err) {
         console.log(err);
@@ -107,27 +107,73 @@ export const addCart = async (req, res) => {
 }
 
 
-export const getCartProducts = async(req,res)=>{
-    try{
-        const {userId}= req.body; 
-        if(!userId)return req.status(400).json({message:"User is required!"})
+export const getCartProducts = async (req, res) => {
+    try {
+        const { userId } = req.body;
+        if (!userId) return req.status(400).json({ message: "User is required!" })
 
         const user = await Users.findById(userId).populate('cartProduct')
-        
+
         const cartProducts = user?.cartProduct
-        let totalPrice =0;
-        for(const y of cartProducts){
-            totalPrice = totalPrice + y.price
+        console.log(cartProducts, "cart pro from getcart pro cont");
+
+        const discount = 2000;
+        let subTotal = 0;
+        for (const y of cartProducts) {
+            subTotal = subTotal + y.price
         }
+        let totalPrice = subTotal - 2000;
         console.log(totalPrice, "total price here");
         const totalProducts = cartProducts.length
-        console.log(totalProducts,"total products here");
-        return res.status(200).json({cartProducts:cartProducts,totalPrice:totalPrice,totalProducts:totalProducts})
+        console.log(totalProducts, "total products here");
+        return res.status(200).json({ success: true, cartProducts, totalPrice, totalProducts, subTotal })
 
 
-    }catch(err){
-        return res.status(500).json({message:"Internal server error!"})
+    } catch (err) {
+        return res.status(500).json({ message: "Internal server error!" })
     }
 }
 
-  
+
+export const removeproduct = async (req, res) => {
+    try {
+        const { userId, pId } = req.body;
+
+        if (!userId || !pId) {
+            return res.status(400).json({ message: "User ID and Product ID are required!" });
+        }
+
+        const user = await Users.findByIdAndUpdate(userId, { $pull: { cartProduct: pId } }, { new: true }).exec();
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found!" });
+        }
+        return res.status(200).json({ success: true, message: "Product removed from cart!" });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal server error!" });
+    }
+};
+
+
+export const emptyCart = async (req, res) => {
+    try {
+        const { userId } = req.body;
+        if (!userId) {
+            return res.status(400).json({ message: "User ID is required!" });
+        }
+
+        const user = await Users.findByIdAndUpdate(userId, { $set: { cartProduct: [] } }, { new: true }).exec();
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found!" });
+        }
+
+        return res.status(200).json({ success: true, message: "Order placed successfully!" });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal server error! - controllerrrrr" });
+    }
+};

@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 
 export const AuthContext = createContext();
 
-const initialState = { user: null, products: null };
+const initialState = { user: null, products: null, cart: null };
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -14,6 +14,12 @@ const reducer = (state, action) => {
             localStorage.removeItem("TanishqJwtToken")
             toast.success("Logout successfully.")
             return { ...state, user: null }
+        case "AddToCart":
+            return { ...state, cart: action.payload }
+        case "RemoveSingleProduct":
+            return { ...state, cart: action.payload }
+        case "EmptyCart":
+            return { ...state, cart: action.payload }
         default:
             return state;
     }

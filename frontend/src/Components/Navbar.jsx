@@ -54,9 +54,9 @@ const Navbar =()=>{
                                             <p className="top-right-menu-name">{state.user.name}</p>
                                         </div>
                                     ) : (
-                                        <div className="icons">
+                                        <div className="icons" onClick={() => router('/login')}>
                                             <Icon.Person className="smIcons" />
-                                            <p onClick={() => router('/login')} className="top-right-menu-name">Profile</p>
+                                            <p  className="top-right-menu-name">Profile</p>
                                         </div>
                                     )}
                                 </div>
@@ -66,7 +66,7 @@ const Navbar =()=>{
                                     </div>
                                     <div className="top-right-menu-name">wishlist</div>
                                 </div>
-                                <div className="top-right-menu">
+                                <div className="top-right-menu" onClick={() => router('/cart')} >
                                     <div className="single-menu">
                                         <Icon.Cart className="smIcons" />
                                     </div>
@@ -74,11 +74,11 @@ const Navbar =()=>{
                                 </div>
 
                                 {state.user ? (
-                                    <div className="top-right-menu">
+                                    <div className="top-right-menu" onClick={() => dispatch({ type: "LOGOUT" })}>
                                         <div className="single-menu" id="logout">
                                             <Icon.BoxArrowRight className="smIcons" />
                                         </div>
-                                        <p onClick={() => dispatch({ type: "LOGOUT" })} className="top-right-menu-name" > Logout</p>
+                                        <p  className="top-right-menu-name" > Logout</p>
                                     </div>
                                 ) : (
                                     <div>  </div>
