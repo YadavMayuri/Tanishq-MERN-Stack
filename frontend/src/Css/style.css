@@ -1,5 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
-
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Manrope:wght@300;400&family=Outfit:wght@300&family=Roboto+Condensed:ital,wght@0,400;1,300&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -234,6 +234,7 @@ a {
 .buttom-navbar-container>ul>li>a {
     color: #000;
     padding-bottom: .9rem;
+    cursor: pointer;
 }
 
 .buttom-navbar-container>ul>li>a:hover {
@@ -405,6 +406,7 @@ a {
 
 .section-heading {
     width: 100%;
+    margin-top: 5rem;
 
 }
 
@@ -481,6 +483,7 @@ a {
 }
 
 .product-link:hover {
+    cursor: pointer;
     box-shadow: 0 .4rem .8rem 0 rgba(131, 39, 41, 0.2), 0 .6rem 2rem 0 rgba(131, 39, 41, 0.19);
 }
 
@@ -2113,7 +2116,6 @@ a {
     outline: none;
 
 }
-
 .pincode {
     width: 45%;
     padding: 1rem;
@@ -2135,7 +2137,7 @@ a {
     font-size: 1.7rem;
     color: #832729;
     text-transform: capitalize;
-    cursor: pointer;
+    cursor: pointer
 
 }
 
@@ -2925,6 +2927,9 @@ a {
     margin-bottom: 1.2rem;
     font-size: 2rem;
     letter-spacing: .04rem;
+}
+.ThanksMsg{
+    font-family: Courgette;
 }
 
 #CurrentuserName {

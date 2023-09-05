@@ -95,18 +95,12 @@ const MultipleProduct = () => {
                         <div >
                             <div className="MProdNotWrap">
                                 <div className="mnImage">
-                                    <img src="https://www.tanishq.co.in/on/demandware.static/Sites-Tanishq-Site/-/default/dw0604e1d9/images/No-data-cuate.svg" alt="" />
+                                    <img src="https://img.freepik.com/free-vector/404-error-with-people-holding-numbers-concept-illustration_114360-7913.jpg?size=626&ext=jpg&ga=GA1.2.1298622682.1673725864&semt=ais" alt="" />
                                 </div>
                                 <div className="mncontwrap">
                                     <h1>Oops !!</h1>
-                                    <h2>We couldn't find any product.</h2>
-                                    <ul>
-                                        <li>Try another spelling. Spellcheck before searching.</li>
-                                        <li>Be less specific in the choice of your search terms. Sometimes a more general term will lead you to similar products.</li>
-                                    </ul>
-
+                                    <h2>The page you are looking for can't be found!</h2>
                                     <input type="button" value={"Continue Shopping"} className="conShoppingbtn" onClick={() => router('/')} />
-
                                 </div>
 
                             </div>

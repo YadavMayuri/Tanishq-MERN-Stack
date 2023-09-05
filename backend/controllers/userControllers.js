@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config()
+import Transactions from "../modals/transactionModal.js"
 
 
 export const Register = async (req, res) => {
@@ -157,23 +158,41 @@ export const removeproduct = async (req, res) => {
 };
 
 
-export const emptyCart = async (req, res) => {
+export const buyNow = async (req, res) => {
     try {
-        const { userId } = req.body;
-        if (!userId) {
-            return res.status(400).json({ message: "User ID is required!" });
-        }
+        const { userId, cartProduct, totalPrice, totalProduct } = req.body;
+        if (!userId) return res.json({ error: "User id is required!" });
+        console.log(userId, cartProduct, totalPrice, totalProduct, " userId, cartProduct,totalPrice, totalProducts");
 
-        const user = await Users.findByIdAndUpdate(userId, { $set: { cartProduct: [] } }, { new: true }).exec();
+        const user = await Users.findById(userId).populate().exec();
+        if (!user) return res.json({ error: "User not found!" });
 
-        if (!user) {
-            return res.status(404).json({ success: false, message: "User not found!" });
-        }
+        //   extract product ids from the cart array
+        const productIds = cartProduct.map(item => item._id);
 
-        return res.status(200).json({ success: true, message: "Order placed successfully!" });
+        const currentDate = new Date();  
+
+        const transactionObj = {
+            userId: user._id,
+            cartProduct: productIds, 
+            totalPrice,
+            totalProduct,
+            createdAt: currentDate, 
+        };
+        console.log(transactionObj,"transaction obj in cont");
+
+        const addToTransaction = new Transactions({ transaction: transactionObj })
+        await addToTransaction.save();
+        console.log(addToTransaction, "addToTransactions");
+
+        const updateCart = await Users.findOneAndUpdate({ _id: userId }, { cartProduct: [] }).exec();
+        console.log(updateCart, "updateUserrr");
+        const finalCart = updateCart.cartProduct
+
+        return res.json({ success: true, finalCart })
 
     } catch (err) {
-        console.error(err);
-        return res.status(500).json({ message: "Internal server error! - controllerrrrr" });
+        console.log(err);
+        return res.json({ error: "Internal server error!!!" })
     }
-};
+}

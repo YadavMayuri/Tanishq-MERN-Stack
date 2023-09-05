@@ -79,7 +79,7 @@ const Home = () => {
 
                     <div className="shop-jwell-content">
                         <div className="jwell-left-img-content-info">
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw489aca65/homepage/shopByCategory/GoldCoin.png" alt="" />
@@ -94,7 +94,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw8ea34f31/homepage/shopByCategory/earrings-new.jpg" alt="" />
@@ -108,7 +108,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw61d76aef/homepage/shopByCategory/Pendant.png" alt="" />
@@ -122,7 +122,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="./multiple-products-page-1.html" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw215de9c7/homepage/shopByCategory/CoupleRing.png" alt="" />
@@ -136,7 +136,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwccb8edee/homepage/shopByCategory/Chain.png" alt="" />
@@ -150,7 +150,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw94a5b614/homepage/shopByCategory/Bangle.png" alt="" />
@@ -167,7 +167,7 @@ const Home = () => {
 
                         </div>
                         <div className="jwell-right-img-content-info">
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw11da1930/homepage/shopByCategory/Ring.png" alt="" />
@@ -181,7 +181,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw311c9ba4/homepage/shopByCategory/mangalsutras-new.jpg" alt="" />
@@ -195,7 +195,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwefbcce7b/homepage/shopByCategory/Neckwear.png" alt="" />
@@ -209,7 +209,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw5b3c542d/homepage/shopByCategory/bracelets-new.jpg" alt="" />
@@ -223,7 +223,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw6e9345c0/homepage/shopByCategory/nosepins-new.jpg" alt="" />
@@ -237,7 +237,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="" className="product-link">
+                            <a onClick={()=>router('/MultipleProduct')} className="product-link">
                                 <div className="card-jewll-category">
                                     <div className="product-img">
                                         <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwacf40d1b/homepage/shopByCategory/pendant-set-new.jpg" alt="" />

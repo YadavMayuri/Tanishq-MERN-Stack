@@ -87,39 +87,30 @@ const Cart = () => {
     }
 
 
-    async function emptyCart() {
-        setLoading(true)
+    const buyNow = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/api/buyer/emptyCart", { userId: state?.user?.userId })
+            console.log(cartProduct, totalPrice, totalProduct, "cart,totalPrice, totalProducts from buynow");
+            const response = await axios.post('http://localhost:3000/api/buyer/buyNow', { userId: state?.user?.userId, cartProduct, totalPrice, totalProduct })
+            console.log(response, "res from buy now");
             if (response.data.success) {
                 dispatch({
                     type: "EmptyCart",
-                    payload: {
-                        CartProduct: response.data.cartProducts,
-                        Totalprice: response.data.totalPrice,
-                        TotalProduct: response.data.totalProducts,
-                        SubTotal: response.data.subTotal
-                    }
+                    payload: response.data.finalCart
                 })
-                setCartProduct(response.data.cartProducts)
-                setSubTotal(response.data.subTotal)
-                setTotalProduct(response.data.cartProducts)
-                setTotalprice(response.data.totalPrice)
-            } else {
-                return toast.error(response.data.message)
-            }
+                setCartProduct(response.data.finalCart)
 
+                toast.success("Order placed successfully!");
+            } else {
+                toast.error("Error while processing transaction!")
+            }
         } catch (err) {
             console.log(err);
+            toast.error("Internal server error!")
         }
-        finally {
-            setLoading(false)
-        }
-
     }
 
     const handleBuyNow =()=>{
-        emptyCart();
+        buyNow();
         router('/successpage');
     }
     return (
