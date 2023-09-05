@@ -13,10 +13,9 @@ const Home = () => {
     const router = useNavigate()
     return (
         <div>
-            <div id="screen">
-               
                <Navbar/>
 
+            <div className="screen">
                 {/* <!-- slider section----------------- --> */}
                 <div className="image-slider">
                     <div id="slider">

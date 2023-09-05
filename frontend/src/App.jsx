@@ -11,6 +11,8 @@ import SingleProduct from './Components/SingleProduct';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Cart from './Components/Cart';
+import PageLoader from './Components/PageLoader';
+import SuccessPage from './Components/SuccessPage';
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -27,6 +29,9 @@ function App() {
         <Route exact path='/navbar' element={<Navbar/>}/>
         <Route exact path='/footer' element={<Footer/>}/>
         <Route exact path='/cart'element={<Cart/>}/>
+        <Route exact path='/pageloader' element={<PageLoader/>}/>
+        <Route exact path='/successpage' element={<SuccessPage/>}/>
+
 
 
       </Routes>

@@ -85,6 +85,8 @@ const Register = () => {
                                 <span className="highlight">Privacy Policy</span>
                             </p>
                             <input type="submit" value="Sign Up" className="r-otp-btn" />
+                            <p className="terms-policy" onClick={()=>router('/login')}>Already have an account ? <span className="highlight"> Login Here</span>
+                            </p>
                         </form>
 
                     </div>

@@ -1,7 +1,6 @@
 @media screen and (max-width:1238px) {
     html {
         font-size: 60%;
-
     }
 }
 
@@ -18,7 +17,9 @@
     .main-body{
         margin-top: 12%;
     }
-
+    .screen{
+        margin-top: 17%;
+    }
     .top-navbar-wrapper {
         width: 98%;
         margin: 0rem auto .6rem auto;
@@ -532,6 +533,22 @@
 }
 
 @media screen and (max-width:768px) {
+    .login-content-wrapper {
+        width: 55%;
+        margin: 5rem auto;
+        display: flex;
+        /* justify-content: space-between; */
+        /* border: .2rem solid orange; */
+        flex-direction: column;
+    }
+
+    .left-login-content {
+        width: 100%;
+    }
+
+    .right-login-img {
+      display: none;
+    }
     .p-path{
         margin-top: 20%;
     }
@@ -624,7 +641,17 @@
         font-size: 32%;
     }
 }
-@media screen and (max-width:510px) {
+@media screen and (max-width:588px) {
+    .screen{
+        margin-top: 18%;
+    }
+}
+@media screen and (max-width:520px) {
+    .screen{
+        margin-top: 20%;
+    }
+}
+@media screen and (max-width:511px) {
     html {
         font-size: 40%;
     }
@@ -633,5 +660,18 @@
     }
     .main-body{
         margin-top: 15%;
+    }
+    .screen{
+        margin-top: 24%;
+    }
+}
+@media screen and (max-width:455px) {
+    .screen{
+        margin-top: 25%;
+    }
+}
+@media screen and (max-width:415px) {
+    .screen{
+        margin-top: 26%;
     }
 }

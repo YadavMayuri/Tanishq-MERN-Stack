@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import * as Icon from 'react-bootstrap-icons';
 import { useNavigate } from "react-router-dom";
+import PageLoader from "./PageLoader";
 
 
 const Cart = () => {
@@ -116,26 +117,26 @@ const Cart = () => {
         }
 
     }
+
+    const handleBuyNow =()=>{
+        emptyCart();
+        router('/successpage');
+    }
     return (
         <>
             <Navbar />
             {loading ? (
-                <div>
-                    <h1>Loading........</h1>
+                <div className="screen">
+                    <PageLoader />
                 </div>
             ) : (
-                <div>
+                <div className="screen">
                     {cartProduct?.length ?
                         <div>
 
                             <div className="cart-screen">
 
                                 <div className="cart-container">
-                                    <div className="register-login-content-wrapper">
-                                        <p><span className="r-l-link">Register</span> / <span className="r-l-link">Login</span> to get Exciting offers &
-                                            benefits on your <span className="txt-color">Encircle Points!</span> </p>
-                                    </div>
-
                                     <div className="cart-product-details">
                                         <div className="left-added-cart-products" id="finalcart">
                                             {cartProduct.map((pro) => (
@@ -282,7 +283,7 @@ const Cart = () => {
                                                     </div>
                                                 </div>
 
-                                                <button className="buyNowBTN" onClick={emptyCart}>Buy Now</button>
+                                                <button className="buyNowBTN" onClick={handleBuyNow}>Buy Now</button>
 
                                             </div>
 
@@ -304,7 +305,7 @@ const Cart = () => {
                             <p className="cemtxt">YOUR CART IS EMPTY </p>
                             <input type="button" value={"Continue Shopping"} className="conShoppingbtn" onClick={() => router('/')} />
 
-                           
+
                         </div>}
                 </div>
             )}

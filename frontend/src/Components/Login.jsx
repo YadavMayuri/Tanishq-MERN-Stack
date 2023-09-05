@@ -87,6 +87,8 @@ const Login = () => {
 
                                 </p>
                                 <input type="submit" value="LOGIN" className="r-otp-btn" />
+                                <p className="terms-policy" onClick={()=>router('/register')}>Don't have an account ? <span className="highlight"> Sign Up Here</span>
+                            </p>
                             </form>
                         </div>
                     </div>

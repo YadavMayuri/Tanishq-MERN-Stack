@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import Navbar from "./Navbar";
+import "../Css/style.css";
+import "../Css/responsive.css";
 
 const AddProduct = () => {
     const [productData, setProductData] = useState({ name: "", price: "", image: ""})
@@ -44,13 +47,14 @@ const AddProduct = () => {
 
     return (
 
-        <div>
-            <form onSubmit={handleSubmit} style={{ marginTop: "2.5rem", padding: "1.6rem", boxShadow: "rgba(0, 0, 0, 0.24) 0px .3rem .8rem", width: "40rem", margin: "5rem auto" }}>
-                <h1>Add Product</h1>
-                <input type="text" name="name" onChange={handleChange} placeholder="Product Name" style={{ marginTop: "2rem",padding:".5rem" }} /><br />
-                <input type="number" name="price" onChange={handleChange} placeholder="Product Price" style={{ marginTop: "2rem",padding:".5rem" }} /><br />
-                <input type="text" name="image" onChange={handleChange} placeholder="Product Image URL" style={{ marginTop: "2rem",padding:".5rem" }} /><br />
-                <input type="submit" style={{ marginTop: "20px",backgroundColor:"maroon",color:"white",outline:"none",border:"none",padding:"1rem" }} />
+        <div className="screen">
+            <Navbar/>
+            <form onSubmit={handleSubmit} style={{  padding: "3.4rem", boxShadow: "rgba(0, 0, 0, 0.24) 0px .3rem .8rem", width: "50rem", margin: "6rem auto" ,textAlign:"center"}} className="addProT">
+                <h1 style={{ fontSize: "3rem"}}>Add Product</h1>
+                <input type="text" name="name" onChange={handleChange} placeholder="Product Name" style={{ marginTop: "2rem" }} /><br />
+                <input type="number" name="price" onChange={handleChange} placeholder="Product Price" style={{ marginTop: "2rem" }} /><br />
+                <input type="text" name="image" onChange={handleChange} placeholder="Product Image URL" style={{ marginTop: "2rem"}} /><br />
+                <input type="submit" style={{ marginTop: "20px",backgroundColor:"maroon",color:"white",outline:"none",border:"none"}} />
             </form>
         </div>
     )
