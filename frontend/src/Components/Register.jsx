@@ -1,7 +1,7 @@
 import React from "react";
 import "../Css/style.css"
 import "../Css/responsive.css"
-import { useState,useEffect,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Toast from "react-hot-toast";
 import axios from "axios";
@@ -11,29 +11,34 @@ const Register = () => {
 
     const { state } = useContext(AuthContext)
 
-    const [userData, setuserData] = useState({ name: '', email: '', password: '', confirmPassword: '' })
+    const [userData, setuserData] = useState({ name: '', email: '', password: '', confirmPassword: '', role: 'buyer' })
     const router = useNavigate()
 
     const handleChange = (event) => {
         setuserData({ ...userData, [event.target.name]: event.target.value })
     }
+    const handleChangeForSelect = (event) => {
+        // console.log(event.target.value, "- value", event.target.name, "- name")
+        setuserData({ ...userData, ["role"]: event.target.value })
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log("hiiiii");
-        const { name, email, password, confirmPassword } = userData;
-        if (!name || !email || !password || !confirmPassword) {return Toast.error("Please fill all the fields.")}
-        if (password.length < 5 || confirmPassword.length < 5) {return Toast.error("Password length should be greater than 5.")}
-        if (password !== confirmPassword){ return Toast.error("Passsword and confirm password not matched.")}
+        const { name, email, password, confirmPassword, role } = userData;
+        if (!name || !email || !password || !confirmPassword || !role) { return Toast.error("Please fill all the fields.") }
+        if (password.length < 5 || confirmPassword.length < 5) { return Toast.error("Password length should be greater than 5.") }
+        if (password !== confirmPassword) { return Toast.error("Passsword and confirm password not matched.") }
         try {
             const response = await axios.post('http://localhost:3000/api/register', {
                 name: userData.name,
                 email: userData.email,
                 password: userData.password,
-                confirmPassword: userData.confirmPassword
+                confirmPassword: userData.confirmPassword,
+                role: userData.role
             })
             if (response.data.success) {
-                setuserData({ name: '', email: '', password: '', confirmPassword: '' })
+                setuserData({ name: '', email: '', password: '', confirmPassword: '', role: 'buyer' })
                 router('/login')
                 return Toast.success(response.data.success)
             } else {
@@ -49,7 +54,7 @@ const Register = () => {
         }
     }
 
-    
+
     useEffect(() => {
         if (state?.user?.name) {
             Toast.success("You are already logged in.")
@@ -71,6 +76,13 @@ const Register = () => {
                             <div className="email-info">
                                 <input type="email" name="email" onChange={handleChange} placeholder="Enter Your Email" />
                             </div>
+                            <div className="email-inforole">
+                                <span className="roletxt">Please select your role :</span>
+                                <select onChange={handleChangeForSelect}>
+                                    <option value='buyer'>Buyer</option>
+                                    <option value='seller'>Seller</option>
+                                </select>
+                            </div>
                             <div className="password-content">
                                 <input type="password" name="password" onChange={handleChange} placeholder="Enter Your Password" />
                             </div>
@@ -78,14 +90,14 @@ const Register = () => {
                                 <input type="password" name="confirmPassword" onChange={handleChange} placeholder="Comfirm Password" />
                             </div>
                             <div className="remember-me">
-                                <input type="checkbox"  checked readOnly/>
+                                <input type="checkbox" checked readOnly />
                                 <span>Remember Me</span>
                             </div>
                             <p className="terms-policy">By continuing, I agree to <span className="highlight">Terms of Use</span> &
                                 <span className="highlight">Privacy Policy</span>
                             </p>
                             <input type="submit" value="Sign Up" className="r-otp-btn" />
-                            <p className="terms-policy" onClick={()=>router('/login')}>Already have an account ? <span className="highlight"> Login Here</span>
+                            <p className="terms-policy" onClick={() => router('/login')}>Already have an account ? <span className="highlight"> Login Here</span>
                             </p>
                         </form>
 

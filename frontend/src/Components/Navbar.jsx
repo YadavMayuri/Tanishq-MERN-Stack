@@ -10,7 +10,6 @@ const Navbar = () => {
 
     const { state, dispatch } = useContext(AuthContext)
     const router = useNavigate()
-    console.log(state?.product,"statecart");
 
     return (
         <>
@@ -45,14 +44,8 @@ const Navbar = () => {
 
                         <div className="top-right-menu-wrapper">
                             <div className="top-right-menu">
-                                <div className="single-menu">
-                                    <Icon.Shop className="smIcons" />
-                                </div>
-                                <div className="top-right-menu-name">stores</div>
-                            </div>
-                            <div className="top-right-menu">
                                 {state.user ? (
-                                    <div className=""  onClick={() => router('/orderhistory')}>
+                                    <div className="" onClick={() => router('/orderhistory')}>
                                         <Icon.Person className="smIcons" />
                                         <p className="top-right-menu-name">{state.user.name}</p>
                                     </div>
@@ -63,21 +56,52 @@ const Navbar = () => {
                                     </div>
                                 )}
                             </div>
-                            <div className="top-right-menu">
-                                <div className="single-menu">
-                                    <Icon.Heart className="smIcons" />
-                                </div>
-                                <div className="top-right-menu-name">wishlist</div>
-                            </div>
-                            <div className="top-right-menu" style={{position:"relative"}} onClick={() => router('/cart')} >
-                                <div className="single-menu">
-                                    <Icon.Cart className="smIcons" />
-                                </div>
-                                <div className="top-right-menu-name">cart</div>
-                                <div className='cProCount'>{state?.product} </div>
+                            {state?.user?.role == 'seller' ? (
+                                <>
+                                    <div className="top-right-menu">
+                                        <div className="single-menu">
+                                            <Icon.BoxSeam className="smIcons" />
+                                        </div>
+                                        <div className="top-right-menu-name">Add </div>
+                                    </div>
+                                    <div className="top-right-menu">
+                                        <div className="single-menu">
+                                            <Icon.Box2 className="smIcons" />
+                                        </div>
+                                        <div className="top-right-menu-name">Update </div>
+                                    </div>
+                                    <div className="top-right-menu">
+                                        <div className="single-menu">
+                                            <Icon.FolderX className="smIcons" />
+                                        </div>
+                                        <div className="top-right-menu-name">Delete </div>
+                                    </div>
 
-                            </div>
+                                </>
+                            ) : (
+                                < >
+                                    <div className="top-right-menu">
+                                        <div className="single-menu">
+                                            <Icon.Shop className="smIcons" />
+                                        </div>
+                                        <div className="top-right-menu-name">stores</div>
+                                    </div>
+                                    <div className="top-right-menu">
+                                        <div className="single-menu">
+                                            <Icon.Heart className="smIcons" />
+                                        </div>
+                                        <div className="top-right-menu-name">wishlist</div>
+                                    </div>
+                                    <div className="top-right-menu" style={{ position: "relative" }} onClick={() => router('/cart')} >
+                                        <div className="single-menu">
+                                            <Icon.Cart className="smIcons" />
+                                        </div>
+                                        <div className="top-right-menu-name">cart</div>
+                                        {/* <div className='cProCount'>{state?.product} </div> */}
+                                    </div>
+                                </>
 
+                            )}
                             {state.user ? (
                                 <div className="top-right-menu" onClick={() => dispatch({ type: "LOGOUT" })}>
                                     <div className="single-menu" id="logout">

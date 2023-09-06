@@ -34,8 +34,6 @@ function App() {
         <Route exact path='/successpage' element={<SuccessPage/>}/>
         <Route exact path='/orderhistory' element={<OrderHistory/>}/>
 
-
-
       </Routes>
      
     </div>

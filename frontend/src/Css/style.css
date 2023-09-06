@@ -1298,13 +1298,13 @@ a {
 .left-login-content {
     width: 72%;
     /* border: .2rem solid rebeccapurple; */
-    padding: 3rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
 }
 
 .left-login-content>h1 {
     text-align: center;
     font-size: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .right-login-img {
@@ -1348,16 +1348,34 @@ a {
     padding: 1rem 2rem;
     border: .1rem solid gray;
     text-align: left;
-
 }
-
 .email-info>input {
     border: none;
     outline: none;
     font-size: 1.3rem;
-
 }
-
+.email-inforole {
+    width: 80%;
+    margin: 1.6rem auto;
+    padding: 1rem 2rem;
+    border: .1rem solid gray;
+    text-align: left;
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+    align-items: center;
+}
+.email-inforole>select {
+    border: .1rem solid lightgray;
+    outline: none;
+    font-size: 1.3rem;
+    padding: .6rem 1rem;
+    width: 35%;
+}
+.roletxt{
+    font-size: 1.3rem;
+    color: gray;
+}
 .password-content {
     width: 80%;
     margin: 1rem auto;
@@ -3172,4 +3190,11 @@ a {
     outline: none;
     border-radius: .5rem;
     padding: 1rem;
+}
+
+
+/* sellerPage */
+.AllContWrapper{
+    width: 90%;
+    margin: auto;
 }

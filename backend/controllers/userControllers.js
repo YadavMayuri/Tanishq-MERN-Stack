@@ -9,14 +9,14 @@ import Products from "../modals/productModal.js"
 
 export const Register = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password,role } = req.body;
         const existingUser = await Users.findOne({ email }).exec();
         if (existingUser) return res.status(400).json({ message: "Email already exist. Login insted." })
 
         const hashedPassword = await bcrypt.hash(password, 10)
 
         const user = new Users({
-            name, email, password: hashedPassword
+            name, email, password: hashedPassword, role
         })
         console.log("user", user);
         await user.save();
@@ -40,7 +40,7 @@ export const Login = async (req, res) => {
 
         if (!comparePassword) return res.status(400).json({ message: "Credientials not matched." })
 
-        const userObj = { userId: response._id, name: response.name, email: response.email }
+        const userObj = { userId: response._id, name: response.name, email: response.email, role:response.role }
         const token = jwt.sign({ userId: response._id }, process.env.JwtToken)
         // console.log(userObj,"userobj from login controller");
 
@@ -69,7 +69,7 @@ export const getCurrentUser = async (req, res) => {
         const user = await Users.findById(userId);
         // console.log(user, "user here");
         if (user) {
-            const userobj = { userId: user._id, name: user.name, email: user.email }
+            const userobj = { userId: user._id, name: user.name, email: user.email,role:user.role }
             // console.log(userobj,"user obj from current user controller");
             return res.status(200).json({ success: true, user: userobj })
 

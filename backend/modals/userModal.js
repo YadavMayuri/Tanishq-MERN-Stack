@@ -8,7 +8,12 @@ const userSchema = new Schema({
     cartProduct: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Products'
-    }]
+    }],
+    role: {
+        type: String,
+        enum: ['buyer', 'seller', 'admin'],
+        default: 'buyer'
+    }
 })
 
 export default mongoose.model("Users", userSchema);
