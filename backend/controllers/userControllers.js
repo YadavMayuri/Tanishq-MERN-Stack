@@ -99,7 +99,7 @@ export const addCart = async (req, res) => {
         const user = await Users.findOneAndUpdate({ _id: userId }, { $push: { cartProduct: pId } }, { new: true }).exec();
         if (!user) return res.json({ error: "User not found!" });
         const product = user.cartProduct
-        return res.json({ success: true ,message:"product added to cart!",product});
+        return res.json({ success: true, message: "product added to cart!", product });
 
     } catch (err) {
         console.log(err);
@@ -162,26 +162,17 @@ export const buyNow = async (req, res) => {
     try {
         const { userId, cartProduct, totalPrice, totalProduct } = req.body;
         if (!userId) return res.json({ error: "User id is required!" });
-        console.log(userId, cartProduct, totalPrice, totalProduct, " userId, cartProduct,totalPrice, totalProducts");
+        console.log(userId, cartProduct, totalPrice, totalProduct, " userId, cart,totalPrice, totalProducts");
 
         const user = await Users.findById(userId).populate().exec();
         if (!user) return res.json({ error: "User not found!" });
 
-        //   extract product ids from the cart array
-        const productIds = cartProduct.map(item => item._id);
-
-        const currentDate = new Date();  
-
-        const transactionObj = {
+        const addToTransaction = new Transactions({
             userId: user._id,
-            cartProduct: productIds, 
+            cartProduct,
             totalPrice,
             totalProduct,
-            createdAt: currentDate, 
-        };
-        console.log(transactionObj,"transaction obj in cont");
-
-        const addToTransaction = new Transactions({ transaction: transactionObj })
+        });
         await addToTransaction.save();
         console.log(addToTransaction, "addToTransactions");
 
@@ -193,6 +184,41 @@ export const buyNow = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        return res.json({ error: "Internal server error!!!" })
+        return res.json({ error: "Internal server error!" })
+    }
+}
+
+
+export const getOrderHistory = async (req, res) => {
+    try {
+        const { userId } = req.body;
+        if (!userId) return res.json({ error: "User id is required!" });
+
+        const orders = await Transactions.find({ userId }).populate('cartProduct').exec();
+        console.log(orders, "orders");
+        if (!orders) return res.json({ error: "You have not placed any orders yet!" });
+
+        // create an arrray to store the order history
+        const orderHistory = [];
+
+        for (const order of orders) {
+            // extraact the product IDs from the cart for this order
+            const productIds = order.cart.map(item => item._id);
+
+            //   find the cart products for this order
+            const cartProducts = await Products.find({ _id: { $in: productIds } }).exec();
+
+            // add this  order to the order hiistory
+            orderHistory.push({
+                orderDetails: order,
+                cartProducts: cartProducts,
+            });
+        }
+
+        return res.json({ success: true, orderHistory });
+
+    } catch (err) {
+        console.log(err);
+        return res.json({ error: "Internal server error!" })
     }
 }

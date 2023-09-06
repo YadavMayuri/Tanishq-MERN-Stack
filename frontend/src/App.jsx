@@ -13,6 +13,7 @@ import Footer from './Components/Footer';
 import Cart from './Components/Cart';
 import PageLoader from './Components/PageLoader';
 import SuccessPage from './Components/SuccessPage';
+import OrderHistory from './Components/OrderHistory';
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -31,6 +32,7 @@ function App() {
         <Route exact path='/cart'element={<Cart/>}/>
         <Route exact path='/pageloader' element={<PageLoader/>}/>
         <Route exact path='/successpage' element={<SuccessPage/>}/>
+        <Route exact path='/orderhistory' element={<OrderHistory/>}/>
 
 
 

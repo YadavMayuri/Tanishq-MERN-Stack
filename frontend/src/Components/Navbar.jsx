@@ -51,14 +51,14 @@ const Navbar = () => {
                             </div>
                             <div className="top-right-menu">
                                 {state.user ? (
-                                    <div className="">
+                                    <div className=""  onClick={() => router('/orderhistory')}>
                                         <Icon.Person className="smIcons" />
                                         <p className="top-right-menu-name">{state.user.name}</p>
                                     </div>
                                 ) : (
                                     <div className="icons" onClick={() => router('/login')}>
                                         <Icon.Person className="smIcons" />
-                                        <p className="top-right-menu-name">Profile</p>
+                                        <p className="top-right-menu-name" >Profile</p>
                                     </div>
                                 )}
                             </div>
