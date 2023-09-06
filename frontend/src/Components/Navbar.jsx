@@ -10,6 +10,7 @@ const Navbar = () => {
 
     const { state, dispatch } = useContext(AuthContext)
     const router = useNavigate()
+    console.log(state?.product,"statecart");
 
     return (
         <>
@@ -68,11 +69,13 @@ const Navbar = () => {
                                 </div>
                                 <div className="top-right-menu-name">wishlist</div>
                             </div>
-                            <div className="top-right-menu" onClick={() => router('/cart')} >
+                            <div className="top-right-menu" style={{position:"relative"}} onClick={() => router('/cart')} >
                                 <div className="single-menu">
                                     <Icon.Cart className="smIcons" />
                                 </div>
                                 <div className="top-right-menu-name">cart</div>
+                                <div className='cProCount'>{state?.product} </div>
+
                             </div>
 
                             {state.user ? (

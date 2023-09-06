@@ -3,7 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config()
-import Transactions from "../modals/transactionModal.js"
+import Transactions from "../modals/transactionModal.js";
+import Products from "../modals/productModal.js"
 
 
 export const Register = async (req, res) => {
@@ -99,7 +100,8 @@ export const addCart = async (req, res) => {
         const user = await Users.findOneAndUpdate({ _id: userId }, { $push: { cartProduct: pId } }, { new: true }).exec();
         if (!user) return res.json({ error: "User not found!" });
         const product = user.cartProduct
-        return res.json({ success: true, message: "product added to cart!", product });
+        const totPro = product.length
+        return res.json({ success: true, message: "product added to cart!", product ,totPro});
 
     } catch (err) {
         console.log(err);
@@ -203,7 +205,7 @@ export const getOrderHistory = async (req, res) => {
 
         for (const order of orders) {
             // extraact the product IDs from the cart for this order
-            const productIds = order.cart.map(item => item._id);
+            const productIds = order.cartProduct.map(item => item._id);
 
             //   find the cart products for this order
             const cartProducts = await Products.find({ _id: { $in: productIds } }).exec();
@@ -211,7 +213,7 @@ export const getOrderHistory = async (req, res) => {
             // add this  order to the order hiistory
             orderHistory.push({
                 orderDetails: order,
-                cartProducts: cartProducts,
+                cartProduct: cartProducts,
             });
         }
 

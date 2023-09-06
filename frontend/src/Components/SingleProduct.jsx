@@ -59,7 +59,6 @@ const SingleProduct = () => {
                     dispatch({
                         type: "AddToCart",
                         payload: data.product,
-
                     })
                     Toast.success("Product added to cart!")
                 } else {
