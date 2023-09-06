@@ -14,6 +14,7 @@ import Cart from './Components/Cart';
 import PageLoader from './Components/PageLoader';
 import SuccessPage from './Components/SuccessPage';
 import OrderHistory from './Components/OrderHistory';
+import SellerDashboard from './Components/SellerDashboard';
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -33,6 +34,8 @@ function App() {
         <Route exact path='/pageloader' element={<PageLoader/>}/>
         <Route exact path='/successpage' element={<SuccessPage/>}/>
         <Route exact path='/orderhistory' element={<OrderHistory/>}/>
+        <Route exact path='/sellerdashboard' element={<SellerDashboard/>}/>
+
 
       </Routes>
      

@@ -8,11 +8,11 @@ import "../Css/style.css";
 import "../Css/responsive.css";
 import PageLoader from "./PageLoader";
 
+
 const MultipleProduct = () => {
     const router = useNavigate()
     const [products, setProducts] = useState()
     const [loading, setLoading] = useState(false);
-
 
     useEffect(() => {
         async function getProducts() {

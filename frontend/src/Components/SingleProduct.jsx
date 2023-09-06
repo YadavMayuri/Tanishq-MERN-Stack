@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import AuthProtected from "./AuthProtected";
+import {AuthProtected} from "./AuthProtected";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";

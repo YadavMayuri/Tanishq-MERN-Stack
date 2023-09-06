@@ -4,7 +4,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import AuthProtected from "./AuthProtected";
+import {AuthProtected} from "./AuthProtected";
 import "../Css/accordianOrderHistory.css";
 import "../Css/style.css";
 import "../Css/responsive.css";
@@ -74,7 +74,7 @@ const OrderHistory = () => {
                                                         <div className="cart-product-img" style={{ width: "13%"}} id="productImage">
                                                             <img src={pro.image} className="got-image" alt="" />
                                                         </div>
-                                                        <div className="cart-product-details">
+                                                        <div className="cartproductdetails">
                                                             <div className="cart-product-name" id="productName">{pro.name}</div>
                                                             <div className="cart-product-id">{pro._id}</div>
                                                             <div className="cart-price-section">

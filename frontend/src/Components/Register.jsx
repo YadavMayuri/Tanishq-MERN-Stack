@@ -60,6 +60,7 @@ const Register = () => {
             Toast.success("You are already logged in.")
             router('/')
         }
+        
     }, [state])
 
     return (

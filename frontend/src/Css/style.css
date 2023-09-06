@@ -3190,11 +3190,39 @@ a {
     outline: none;
     border-radius: .5rem;
     padding: 1rem;
-}
 
+}
+.addProT{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 50%;
+}
 
 /* sellerPage */
 .AllContWrapper{
     width: 90%;
     margin: auto;
 }
+.sellAccessWrap{
+    border: .1rem solid;
+}
+.sbdWrapper{
+    border: .2rem solid transparent;
+    width: 90%;
+    margin: auto;
+
+}
+.sdbheadwrap{
+    margin-top: 3rem;
+}
+
+
+
+
+
+
+
+
+

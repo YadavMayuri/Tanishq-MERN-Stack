@@ -40,6 +40,7 @@ const HandleAuthContext = ({ children }) => {
                     dispatch({
                         type: "LOGIN",
                         payload: response.data.user
+                        
                     })
                 } else {
                     toast.error(response.data.message)

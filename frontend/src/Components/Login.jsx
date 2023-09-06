@@ -1,7 +1,7 @@
 import React from "react";
 import "../Css/style.css";
 import "../Css/responsive.css";
-import { useContext, useState,useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Toast from "react-hot-toast";
 import axios from "axios";
@@ -37,12 +37,17 @@ const Login = () => {
                 dispatch({
                     type: "LOGIN",
                     payload: response.data.user,
-                    
+
                 })
-                console.log(response.data.user,"user response from login payload");
+                console.log(response.data.user, "user response from login payload");
                 localStorage.setItem("TanishqJwtToken", JSON.stringify(response.data.token))
                 setUserData({ email: "", password: "" });
-                router('/');
+                if (response.data.user.role == 'seller') {
+                    router('/sellerdashboard')
+                } else {
+                    router('/');
+
+                }
                 Toast.success(response.data.success);
             } else {
                 Toast.error(response.data.message);
@@ -57,12 +62,13 @@ const Login = () => {
         }
     };
 
-    useEffect(()=>{
-        if(state?.user?.name){
+    useEffect(() => {
+        if (state?.user?.name) {
             Toast.success("You are already logged in.")
             router('/')
+
         }
-    },[state])
+    }, [state])
 
     return (
         <div>
@@ -73,13 +79,13 @@ const Login = () => {
                         <div className="form-content">
                             <form action="" onSubmit={handleSubmit}>
                                 <div className="email-info">
-                                    <input type="email" onChange={handleChange}  name="email" placeholder="Enter Your Email" />
+                                    <input type="email" onChange={handleChange} name="email" placeholder="Enter Your Email" />
                                 </div>
                                 <div className="password-content">
-                                    <input type="password" onChange={handleChange}  name="password" placeholder="Enter Your password" />
+                                    <input type="password" onChange={handleChange} name="password" placeholder="Enter Your password" />
                                 </div>
                                 <div className="remember-me">
-                                    <input type="checkbox" checked  readOnly/>
+                                    <input type="checkbox" checked readOnly />
                                     <span>Remember Me</span>
                                 </div>
                                 <p className="terms-policy">By continuing, I agree to <span className="highlight">Terms of Use</span> &
@@ -87,8 +93,8 @@ const Login = () => {
 
                                 </p>
                                 <input type="submit" value="LOGIN" className="r-otp-btn" />
-                                <p className="terms-policy" onClick={()=>router('/register')}>Don't have an account ? <span className="highlight"> Sign Up Here</span>
-                            </p>
+                                <p className="terms-policy" onClick={() => router('/register')}>Don't have an account ? <span className="highlight"> Sign Up Here</span>
+                                </p>
                             </form>
                         </div>
                     </div>

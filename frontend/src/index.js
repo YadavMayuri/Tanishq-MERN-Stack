@@ -20,7 +20,7 @@ root.render(
         toastOptions={{
           // Define default options
           className: '',
-          duration: 2000,
+          duration: 3000,
           style: {
             background: '#363636',
             color: '#fff',
@@ -29,7 +29,7 @@ root.render(
 
           // Default options for specific types
           success: {
-            duration: 2000,
+            duration: 3000,
             theme: {
               primary: 'green',
               secondary: 'black',
