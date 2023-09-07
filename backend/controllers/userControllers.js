@@ -9,7 +9,15 @@ import Products from "../modals/productModal.js"
 
 export const Register = async (req, res) => {
     try {
-        const { name, email, password,role } = req.body;
+        const { name, email, password,confirmPassword,role } = req.body;
+        if (!name) return  res.status(400).json({message:"Name is required!"})
+        if (!email) return  res.status(400).json({message:"Email is required!"})
+        if (!password) return  res.status(400).json({message:"Password is required!"})
+        if (!confirmPassword) return  res.status(400).json({message:"Confirm password is required!"})
+        if (!role) return  res.status(400).json({message:"Role is required!"})
+        if (password.length < 5 || confirmPassword.length < 5) return res.status(400).json({message:"Password length should be greater than 5."}) 
+        if (password !== confirmPassword)  return res.status(400).json({message:"Passsword and confirm password not matched."})
+        
         const existingUser = await Users.findOne({ email }).exec();
         if (existingUser) return res.status(400).json({ message: "Email already exist. Login insted." })
 

@@ -10,6 +10,10 @@ const Navbar = () => {
 
     const { state, dispatch } = useContext(AuthContext)
     const router = useNavigate()
+    const LOGOUT = ()=>{
+        dispatch({type:"LOGOUT"})
+        router('/')
+    }
 
     return (
         <>
@@ -45,10 +49,24 @@ const Navbar = () => {
                         <div className="top-right-menu-wrapper">
                             <div className="top-right-menu">
                                 {state.user ? (
-                                    <div className="" onClick={() => router('/orderhistory')}>
-                                        <Icon.Person className="smIcons" />
-                                        <p className="top-right-menu-name">{state.user.name}</p>
-                                    </div>
+
+                                    <>
+                                        {state?.user?.role == 'seller' ? (
+                                            <>
+                                                <div className="icons" onClick={() => router('/sellerdashboard')}>
+                                                    <Icon.Person className="smIcons" />
+                                                    <p className="top-right-menu-name" >{state.user.name}</p>
+                                                </div>
+                                            </>) :
+                                            (<>
+                                                <div className="" onClick={() => router('/orderhistory')}>
+                                                    <Icon.Person className="smIcons" />
+                                                    <p className="top-right-menu-name">{state.user.name}</p>
+                                                </div>
+                                            </>)}
+
+                                    </>
+
                                 ) : (
                                     <div className="icons" onClick={() => router('/login')}>
                                         <Icon.Person className="smIcons" />
@@ -58,11 +76,17 @@ const Navbar = () => {
                             </div>
                             {state?.user?.role == 'seller' ? (
                                 <>
-                                    <div className="top-right-menu">
+                                    <div className="top-right-menu" onClick={() => router('/addProduct')}>
                                         <div className="single-menu">
                                             <Icon.FolderPlus className="smIcons" />
                                         </div>
-                                        <div className="top-right-menu-name" onClick={() => router('/addProduct')}>Add </div>
+                                        <div className="top-right-menu-name">Add </div>
+                                    </div>
+                                    <div className="top-right-menu" onClick={() => router('/sellerAllProducts')}>
+                                        <div className="single-menu">
+                                            <Icon.Boxes className="smIcons" />
+                                        </div>
+                                        <div className="top-right-menu-name">View </div>
                                     </div>
                                     <div className="top-right-menu">
                                         <div className="single-menu">
@@ -103,7 +127,7 @@ const Navbar = () => {
 
                             )}
                             {state.user ? (
-                                <div className="top-right-menu" onClick={() => dispatch({ type: "LOGOUT" })}>
+                                <div className="top-right-menu" onClick={LOGOUT}>
                                     <div className="single-menu" id="logout">
                                         <Icon.BoxArrowRight className="smIcons" />
                                     </div>

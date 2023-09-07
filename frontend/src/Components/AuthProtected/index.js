@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { AuthContext } from "../../Context/AuthContext"
 import { useNavigate } from "react-router-dom"
 import * as Icon from 'react-bootstrap-icons';
@@ -28,11 +28,19 @@ const SellerProtected = ({ children }) => {
 
     const { state } = useContext(AuthContext);
     const router = useNavigate();
+    const [counter ,setCounter] = useState(3)
     console.log(state?.user?.role, "user role before useFffect ");
 
     useEffect(() => {
+        const timer = setInterval(() => {
+            setCounter(i => i - 1);
+        }, 1000);
+        return () => clearInterval(timer);
+    }, [])
+
+    useEffect(() => {
         if (!state?.user || state?.user?.role !== 'seller') {   //check if user id not logged in or not seller
-            setTimeout(() => { router('/') }, 5000)
+            setTimeout(() => { router('/') }, 3000)
             console.log(state?.user?.role, "user role in useFffect ");
 
         }
@@ -49,8 +57,7 @@ const SellerProtected = ({ children }) => {
                     <h1 style={{ fontSize: "2.8rem", textAlign: "center", color: "#912623" }}> Invalid Access!</h1>
                 </div>
                 <h2 style={{ marginTop: "2rem", fontSize: "2.8rem", textAlign: "center" }}>You are not allowed to view this page.</h2>
-                <h3 style={{ marginTop: "2rem", fontSize: "2.4rem", textAlign: "center" }}>Redirecting to home Page in 5 seconds.</h3>
-                <button onClick={()=>router('/')}  style={{padding:"1rem "}} className="conShoppingbtn">Go to Home</button>
+                <h3 style={{ marginTop: "2rem", fontSize: "2.4rem", textAlign: "center" }}>Redirecting to home Page in {counter} seconds.</h3>
 
             </div>
         )

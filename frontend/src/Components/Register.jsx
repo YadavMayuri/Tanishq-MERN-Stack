@@ -26,9 +26,7 @@ const Register = () => {
         event.preventDefault();
         console.log("hiiiii");
         const { name, email, password, confirmPassword, role } = userData;
-        if (!name || !email || !password || !confirmPassword || !role) { return Toast.error("Please fill all the fields.") }
-        if (password.length < 5 || confirmPassword.length < 5) { return Toast.error("Password length should be greater than 5.") }
-        if (password !== confirmPassword) { return Toast.error("Passsword and confirm password not matched.") }
+        console.log( name, email, password, confirmPassword, role,"userData");
         try {
             const response = await axios.post('http://localhost:3000/api/register', {
                 name: userData.name,

@@ -5,7 +5,6 @@ import Register from './Components/Register';
 import Login from './Components/Login';
 import { useContext} from 'react';
 import { AuthContext } from './Context/AuthContext';
-import AddProduct from './Components/AddProduct';
 import MultipleProduct from './Components/MultipleProduct';
 import SingleProduct from './Components/SingleProduct';
 import Navbar from './Components/Navbar';
@@ -14,7 +13,9 @@ import Cart from './Components/Cart';
 import PageLoader from './Components/PageLoader';
 import SuccessPage from './Components/SuccessPage';
 import OrderHistory from './Components/OrderHistory';
-import SellerDashboard from './Components/SellerDashboard';
+import AddProduct from './Components/Seller/AddProduct';
+import SellerDashboard from './Components/Seller/SellerDashboard';
+import SellerAllProducts from './Components/Seller/SellerAllProducts';
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -35,6 +36,8 @@ function App() {
         <Route exact path='/successpage' element={<SuccessPage/>}/>
         <Route exact path='/orderhistory' element={<OrderHistory/>}/>
         <Route exact path='/sellerdashboard' element={<SellerDashboard/>}/>
+        <Route exact path='/sellerAllProducts' element={<SellerAllProducts/>}/>
+
 
 
       </Routes>
