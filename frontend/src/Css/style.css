@@ -1608,10 +1608,10 @@ a {
     /* border: .2rem solid green; */
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    /* gap: 3rem; */
+    justify-content: start;
+    gap: 2.6rem;
     flex-wrap: wrap;
-    margin: 5rem auto;
+    margin: 2rem auto;
 
 }
 

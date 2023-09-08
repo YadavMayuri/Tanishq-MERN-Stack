@@ -29,7 +29,6 @@ const SellerProtected = ({ children }) => {
     const { state } = useContext(AuthContext);
     const router = useNavigate();
     const [counter ,setCounter] = useState(3)
-    console.log(state?.user?.role, "user role before useFffect ");
 
     useEffect(() => {
         const timer = setInterval(() => {

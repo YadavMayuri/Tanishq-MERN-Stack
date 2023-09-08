@@ -88,18 +88,6 @@ const Navbar = () => {
                                         </div>
                                         <div className="top-right-menu-name">View </div>
                                     </div>
-                                    <div className="top-right-menu">
-                                        <div className="single-menu">
-                                            <Icon.Box2 className="smIcons" />
-                                        </div>
-                                        <div className="top-right-menu-name">Update </div>
-                                    </div>
-                                    <div className="top-right-menu">
-                                        <div className="single-menu">
-                                            <Icon.FolderX className="smIcons" />
-                                        </div>
-                                        <div className="top-right-menu-name">Delete </div>
-                                    </div>
 
                                 </>
                             ) : (
