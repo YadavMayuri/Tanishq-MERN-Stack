@@ -9,11 +9,13 @@ import "../Css/responsive.css"
 const Navbar = () => {
 
     const { state, dispatch } = useContext(AuthContext)
-    const router = useNavigate()
+    const router = useNavigate();
     const LOGOUT = ()=>{
         dispatch({type:"LOGOUT"})
         router('/')
     }
+
+    // console.log(state?.cart?.totalProducts,"total cart prod from navbar");
 
     return (
         <>
@@ -109,7 +111,9 @@ const Navbar = () => {
                                             <Icon.Cart className="smIcons" />
                                         </div>
                                         <div className="top-right-menu-name">cart</div>
-                                        <div className='cProCount'>{state?.product}0 </div>
+                                        {state?.cart?.totalProducts?(<><div className='cProCount'>{state?.cart?.totalProducts} </div></>):(<></>)}
+                                        
+                                       
                                     </div>
                                 </>
 

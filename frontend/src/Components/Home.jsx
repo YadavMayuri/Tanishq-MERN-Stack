@@ -53,10 +53,10 @@ const Home = () => {
                     {/* <!-- slider section----------------- --> */}
                     <div className="image-slider">
                         <div id="slider">
-                            <input type="radio" name="slider" id="slide1" checked />
-                            <input type="radio" name="slider" id="slide2" />
-                            <input type="radio" name="slider" id="slide3" />
-                            <input type="radio" name="slider" id="slide4" />
+                            <input type="radio" name="slider" id="slide1" defaultChecked readOnly/>
+                            <input type="radio" name="slider" id="slide2" readOnly/>
+                            <input type="radio" name="slider" id="slide3" readOnly/>
+                            <input type="radio" name="slider" id="slide4"readOnly />
                             <div id="slides">
                                 <div id="overflow">
                                     <div className="inner">

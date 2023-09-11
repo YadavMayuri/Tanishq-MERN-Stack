@@ -20,7 +20,7 @@ const Cart = () => {
     const [cartProduct, setCartProduct] = useState([])
     const [totalPrice, setTotalprice] = useState(0)
     const [totalProduct, setTotalProduct] = useState(0)
-    const [subTotal, setSubTotal] = useState()
+    const [subTotal, setSubTotal] = useState(0)
     const [loading, setLoading] = useState(false);
 
 
@@ -39,7 +39,7 @@ const Cart = () => {
                     setTotalProduct(response.data.totalProducts)
                     setSubTotal(response.data.subTotal)
                     console.log(response.data.cartProducts);
-
+                    console.log(response.data.totalProducts,"response - tot pro from get pro controller");
                 } else {
                     return toast.error
                 }
@@ -63,17 +63,15 @@ const Cart = () => {
             if (response.data.success) {
                 dispatch({
                     type: "RemoveSingleProduct",
-                    payload: {
-                        CartProduct: response.data.cartProducts,
-                        Totalprice: response.data.totalPrice,
-                        TotalProduct: response.data.totalProducts,
-                        SubTotal: response.data.subTotal
-                    }
+                    payload: response.data.cart
                 })
                 setCartProduct(response.data.cartProducts)
                 setSubTotal(response.data.subTotal)
-                setTotalProduct(response.data.cartProducts)
+                setTotalProduct(response.data.totalProducts)
                 setTotalprice(response.data.totalPrice)
+                toast.success("Product removed from cart!")
+                console.log(response.data.totalProducts,"response - tot pro from remove pro controller");
+
             }
             else {
                 return toast.error(response.data.message)
@@ -96,10 +94,10 @@ const Cart = () => {
             if (response.data.success) {
                 dispatch({
                     type: "EmptyCart",
-                    payload: response.data.finalCart
+                    payload: response.data.cart
                 })
                 setCartProduct(response.data.finalCart)
-
+                console.log(response.data.finalCart,"response.data.finalCart--- buy now");
                 toast.success("Order placed successfully!");
             } else {
                 toast.error("Error while processing transaction!")

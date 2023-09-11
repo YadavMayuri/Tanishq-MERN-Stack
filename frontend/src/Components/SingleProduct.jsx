@@ -33,13 +33,6 @@ const SingleProduct = () => {
 
             } catch (err) {
                 console.log(err);
-                // if (err.response && err.response.data && err.response.data.message) {
-                //     Toast.error(err.response.data.message);
-                // } else {
-                //     // Handle any other error cases
-                //     console.log(err);
-                //     Toast.error("An error occurred.");
-                // }
             }
             finally {
                 setLoading(false)
@@ -58,8 +51,9 @@ const SingleProduct = () => {
                 if (data.success) {
                     dispatch({
                         type: "AddToCart",
-                        payload: data.product,
+                        payload: data.cart,
                     })
+                    
                     Toast.success("Product added to cart!")
                 } else {
                     Toast.error(data.error)
@@ -95,7 +89,7 @@ const SingleProduct = () => {
                                                 <span>|</span>
                                                 <span>Diamon Finger Rings</span>
                                                 <span>|</span>
-                                                <span>{product.name}</span>
+                                                <span >{product.name}</span>
                                             </div>
                                             <div className="product-images-pictures">
                                                 <div className="product-mini-images">

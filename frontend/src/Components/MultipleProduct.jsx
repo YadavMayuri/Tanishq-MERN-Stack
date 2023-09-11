@@ -25,6 +25,7 @@ const MultipleProduct = () => {
                     params: { category } // Pass the category as a query parameter
                 });
 
+                console.log(response.data,"resp from get product using useLocation");
                 if (response.data.success) {
                     setProducts(response.data.products);
                 } else {

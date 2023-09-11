@@ -30,7 +30,8 @@ summary {
 .cartproductdetails{
     display: flex;
     flex-direction: column;
-    padding-left: 2rem;
+    padding: 2rem;
+    /* border: .1rem solid  palegreen; */
 }
 .cart-product-name{
     font-weight: 700;

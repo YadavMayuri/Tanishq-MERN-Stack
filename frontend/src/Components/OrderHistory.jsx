@@ -70,7 +70,7 @@ const OrderHistory = () => {
                                         <div>
                                             {orderHead.cartProduct.map((pro) => (
                                                 <div>
-                                                    <div className="cart-products" key={pro._id} style={{display:"flex", justifyContent:"space-around",  padding: "0",borderBottom:".1rem solid lightgray"}}>
+                                                    <div className="cart-products" key={pro._id} style={{display:"flex", justifyContent:"start",gap:"1.8rem",  padding: "0",borderBottom:".1rem solid lightgray"}}>
                                                         <div className="cart-product-img" style={{ width: "13%"}} id="productImage">
                                                             <img src={pro.image} className="got-image" alt="" />
                                                         </div>

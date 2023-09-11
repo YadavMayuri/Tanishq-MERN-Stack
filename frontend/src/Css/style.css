@@ -1611,7 +1611,7 @@ a {
     justify-content: start;
     gap: 2.6rem;
     flex-wrap: wrap;
-    margin: 2rem auto;
+    margin: 4rem auto;
 
 }
 
@@ -1619,11 +1619,14 @@ a {
     width: 23%;
     border: 1px solid #5a1617;
     margin-bottom: 4rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 .products {
     width: 100%;
     cursor: pointer;
+    
 
 }
 
