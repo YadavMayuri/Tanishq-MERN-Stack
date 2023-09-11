@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -8,42 +8,45 @@ import "../Css/style.css";
 import "../Css/responsive.css";
 import PageLoader from "./PageLoader";
 
-
 const MultipleProduct = () => {
-    const router = useNavigate()
-    const [products, setProducts] = useState()
+    const router = useNavigate();
+    const location = useLocation();
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function getProducts() {
-            setLoading(true)
+            setLoading(true);
             try {
-                console.log("hii");
+                const category = new URLSearchParams(location.search).get("category");
+                console.log("Category:", category);
 
-                // const response = await api.post("/getAllProducts")
-                const response = await axios.get("http://localhost:3000/api/getAllProducts")
-                console.log(response.data.products);
+                const response = await axios.get("http://localhost:3000/api/getByCategory", {
+                    params: { category } // Pass the category as a query parameter
+                });
+
                 if (response.data.success) {
-                    setProducts(response.data.products)
+                    setProducts(response.data.products);
                 } else {
-                    toast.error(response.data.message)
+                    toast.error(response.data.message);
                 }
-
             } catch (err) {
-                console.log(err);
+                console.error(err);
                 if (err.response && err.response.data && err.response.data.message) {
                     toast.error(err.response.data.message);
                 } else {
-                    // Handle any other error cases
                     toast.error("An error occurred.");
                 }
-            }
-            finally {
-                setLoading(false)
+            } finally {
+                setLoading(false);
             }
         }
-        getProducts()
-    }, [])
+
+        getProducts();
+    }, [location.search]);
+
+
+
     return (
 
 
@@ -79,8 +82,8 @@ const MultipleProduct = () => {
                                                 <div className="product-info">
                                                     <div className="hurry">only 1 left in stock</div>
                                                     <div className="p-name" id="for-product-name">{product.name} </div>
-                                                    <div className="p-price" id="for-product-price">{product.price} </div>
-                                                    <div className="p-path">Women | Finger Ring </div>
+                                                    <div className="p-price" id="for-product-price"> ₹{product.price} </div>
+                                                    <div className="p-path">Women | {product.category} </div>
                                                     <button className="explorer-btn">explore now</button>
                                                 </div>
                                             </div>

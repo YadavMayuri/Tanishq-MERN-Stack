@@ -7,10 +7,43 @@ import { AuthContext } from '../Context/AuthContext';
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import {  useState } from "react";
+
 
 const Home = () => {
     const { state, dispatch } = useContext(AuthContext)
     const router = useNavigate()
+    const [products, setProducts] = useState()
+
+    async function getByCategory(category) {
+        try {
+            console.log("in grtcat");
+            const response = await axios.get('http://localhost:3000/api/getByCategory', {
+                params: { category } // Pass the category as a query parameter
+            });
+
+            console.log(response.data, "ref from getcat");
+            if (response.data.success) {
+                setProducts(response.data.products);
+                console.log(`Products for category ${category}:`, response.data.products);
+            } else {
+                toast.error(response.data.message);
+                console.error(`Error for category ${category}:`, response.data.message);
+            }
+        } catch (err) {
+            // Handle any network or other errors for each category
+            console.error(`Error for category ${category}:`, err);
+            toast.error("An error occurred");
+        }
+    }
+
+
+
+
+
+
     return (
         <div>
             <Navbar />
@@ -80,28 +113,13 @@ const Home = () => {
 
                         <div className="shop-jwell-content">
                             <div className="jwell-left-img-content-info">
-                                <a onClick={() => router('/MultipleProduct')} className="product-link">
+                                <a  onClick={() => router(`/MultipleProduct?category=Finger Ring`)} className="product-link">
                                     <div className="card-jewll-category">
                                         <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw489aca65/homepage/shopByCategory/GoldCoin.png" alt="" />
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw11da1930/homepage/shopByCategory/Ring.png" alt="" />
                                         </div>
                                         <div className="card-product-info">
-                                            <h5 className="jwell-name">gold coins</h5>
-                                            <div className="explore-btn-and-arrow-wrap">
-                                                <span className="e-expolre-txt">Explore</span>
-                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </a>
-                                <a onClick={() => router('/MultipleProduct')} className="product-link">
-                                    <div className="card-jewll-category">
-                                        <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw8ea34f31/homepage/shopByCategory/earrings-new.jpg" alt="" />
-                                        </div>
-                                        <div className="card-product-info">
-                                            <h5 className="jwell-name">earrings</h5>
+                                            <h5 className="jwell-name">finger rings</h5>
                                             <div className="explore-btn-and-arrow-wrap">
                                                 <span className="e-expolre-txt">Explore</span>
                                                 <span className="e-card-next-icon"><Icon.ChevronRight /></span>
@@ -109,49 +127,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </a>
-                                <a onClick={() => router('/MultipleProduct')} className="product-link">
-                                    <div className="card-jewll-category">
-                                        <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw61d76aef/homepage/shopByCategory/Pendant.png" alt="" />
-                                        </div>
-                                        <div className="card-product-info">
-                                            <h5 className="jwell-name">pendants</h5>
-                                            <div className="explore-btn-and-arrow-wrap">
-                                                <span className="e-expolre-txt">Explore</span>
-                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a onClick={() => router('/MultipleProduct')} className="product-link">
-                                    <div className="card-jewll-category">
-                                        <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw215de9c7/homepage/shopByCategory/CoupleRing.png" alt="" />
-                                        </div>
-                                        <div className="card-product-info">
-                                            <h5 className="jwell-name">Engagement rings</h5>
-                                            <div className="explore-btn-and-arrow-wrap">
-                                                <span className="e-expolre-txt">Explore</span>
-                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a onClick={() => router('/MultipleProduct')} className="product-link">
-                                    <div className="card-jewll-category">
-                                        <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwccb8edee/homepage/shopByCategory/Chain.png" alt="" />
-                                        </div>
-                                        <div className="card-product-info">
-                                            <h5 className="jwell-name">chains</h5>
-                                            <div className="explore-btn-and-arrow-wrap">
-                                                <span className="e-expolre-txt">Explore</span>
-                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a onClick={() => router('/MultipleProduct')} className="product-link">
+                                <a onClick={() => router(`/MultipleProduct?category=Bangle`)} className="product-link">
                                     <div className="card-jewll-category">
                                         <div className="product-img">
                                             <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw94a5b614/homepage/shopByCategory/Bangle.png" alt="" />
@@ -165,20 +141,79 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </a>
+                                <a  onClick={() => router(`/MultipleProduct?category=Earrings`)}  className="product-link">
+                                    <div className="card-jewll-category">
+                                        <div className="product-img">
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw8ea34f31/homepage/shopByCategory/earrings-new.jpg" alt="" />
+                                        </div>
+                                        <div className="card-product-info">
+                                            <h5 className="jwell-name">earrings</h5>
+                                            <div className="explore-btn-and-arrow-wrap">
+                                                <span className="e-expolre-txt">Explore</span>
+                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a  onClick={() => router(`/MultipleProduct?category=Pendant Set`)} className="product-link">
+                                    <div className="card-jewll-category">
+                                        <div className="product-img">
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwacf40d1b/homepage/shopByCategory/pendant-set-new.jpg" alt="" />
+                                        </div>
+                                        <div className="card-product-info">
+                                            <h5 className="jwell-name">pendant sets</h5>
+                                            <div className="explore-btn-and-arrow-wrap">
+                                                <span className="e-expolre-txt">Explore</span>
+                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a onClick={() => router(`/MultipleProduct?category=Necklace`)} className="product-link">
+                                    <div className="card-jewll-category">
+                                        <div className="product-img">
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwefbcce7b/homepage/shopByCategory/Neckwear.png" alt="" />
+                                        </div>
+                                        <div className="card-product-info">
+                                            <h5 className="jwell-name">neckwear</h5>
+                                            <div className="explore-btn-and-arrow-wrap">
+                                                <span className="e-expolre-txt">Explore</span>
+                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a  onClick={() => router(`/MultipleProduct?category=Engagement Rings`)} className="product-link">
+                                    <div className="card-jewll-category">
+                                        <div className="product-img">
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw215de9c7/homepage/shopByCategory/CoupleRing.png" alt="" />
+                                        </div>
+                                        <div className="card-product-info">
+                                            <h5 className="jwell-name">Engagement rings</h5>
+                                            <div className="explore-btn-and-arrow-wrap">
+                                                <span className="e-expolre-txt">Explore</span>
+                                                <span className="e-card-next-icon"><Icon.ChevronRight /></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
 
                             </div>
                             <div className="jwell-right-img-content-info">
                                 <a onClick={() => router('/MultipleProduct')} className="product-link">
                                     <div className="card-jewll-category">
                                         <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw11da1930/homepage/shopByCategory/Ring.png" alt="" />
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw489aca65/homepage/shopByCategory/GoldCoin.png" alt="" />
                                         </div>
                                         <div className="card-product-info">
-                                            <h5 className="jwell-name">finger rings</h5>
+                                            <h5 className="jwell-name">gold coins</h5>
                                             <div className="explore-btn-and-arrow-wrap">
                                                 <span className="e-expolre-txt">Explore</span>
                                                 <span className="e-card-next-icon"><Icon.ChevronRight /></span>
                                             </div>
+
                                         </div>
                                     </div>
                                 </a>
@@ -199,10 +234,10 @@ const Home = () => {
                                 <a onClick={() => router('/MultipleProduct')} className="product-link">
                                     <div className="card-jewll-category">
                                         <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwefbcce7b/homepage/shopByCategory/Neckwear.png" alt="" />
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwccb8edee/homepage/shopByCategory/Chain.png" alt="" />
                                         </div>
                                         <div className="card-product-info">
-                                            <h5 className="jwell-name">neckwear</h5>
+                                            <h5 className="jwell-name">chains</h5>
                                             <div className="explore-btn-and-arrow-wrap">
                                                 <span className="e-expolre-txt">Explore</span>
                                                 <span className="e-card-next-icon"><Icon.ChevronRight /></span>
@@ -241,10 +276,10 @@ const Home = () => {
                                 <a onClick={() => router('/MultipleProduct')} className="product-link">
                                     <div className="card-jewll-category">
                                         <div className="product-img">
-                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwacf40d1b/homepage/shopByCategory/pendant-set-new.jpg" alt="" />
+                                            <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw61d76aef/homepage/shopByCategory/Pendant.png" alt="" />
                                         </div>
                                         <div className="card-product-info">
-                                            <h5 className="jwell-name">pendant sets</h5>
+                                            <h5 className="jwell-name">pendants</h5>
                                             <div className="explore-btn-and-arrow-wrap">
                                                 <span className="e-expolre-txt">Explore</span>
                                                 <span className="e-card-next-icon"><Icon.ChevronRight /></span>
@@ -252,6 +287,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </a>
+
                             </div>
                         </div>
 

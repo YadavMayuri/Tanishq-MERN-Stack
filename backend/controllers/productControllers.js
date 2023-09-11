@@ -154,3 +154,22 @@ export const deleteProduct = async(req,res)=>{
         return res.status(500).json({message:"Internal server error!"})
     }
 }
+
+export const getByCategory = async (req, res) => {
+    try {
+        const { category } = req.query; // Use req.query to get the category parameter from the URL query string
+
+        const query = category ? { category } : {}; // If a category is provided, filter by category; otherwise, fetch all products
+
+        const products = await Products.find(query).exec();
+
+        if (!products || products.length === 0) {
+            return res.status(404).json({ success: false, message: "No Products Found!" });
+        }
+
+        return res.status(200).json({ success: true, products });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: "An error occurred!" });
+    }
+}

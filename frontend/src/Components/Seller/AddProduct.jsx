@@ -54,7 +54,7 @@ const AddProduct = () => {
 
     return (
 
-        <div className="screen">
+        <div className="screen" >
             <Navbar />
             <SellerProtected>
                 <form onSubmit={handleSubmit} style={{ padding: "3.4rem", boxShadow: "rgba(0, 0, 0, 0.24) 0px .3rem .8rem", textAlign: "center" }} className="addProT">
@@ -63,7 +63,7 @@ const AddProduct = () => {
                     <input type="number" name="price" onChange={handleChange} placeholder="Product Price" style={{ marginTop: "2rem" }} /><br />
                     <input type="text" name="category" onChange={handleChange} placeholder="Product Category" style={{ marginTop: "2rem" }} /><br />
                     <input type="text" name="image" onChange={handleChange} placeholder="Product Image URL" style={{ marginTop: "2rem" }} /><br />
-                    <input type="submit" style={{ marginTop: "20px", backgroundColor: "maroon", color: "white", outline: "none", border: "none" }} />
+                    <input type="submit" style={{ marginTop: "20px", backgroundColor: "maroon", color: "white", outline: "none", border: "none",cursor:"pointer" }} />
                 </form>
             </SellerProtected>
 

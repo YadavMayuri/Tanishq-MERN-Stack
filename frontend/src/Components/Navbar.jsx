@@ -109,7 +109,7 @@ const Navbar = () => {
                                             <Icon.Cart className="smIcons" />
                                         </div>
                                         <div className="top-right-menu-name">cart</div>
-                                        {/* <div className='cProCount'>{state?.product} </div> */}
+                                        <div className='cProCount'>{state?.product}0 </div>
                                     </div>
                                 </>
 
@@ -164,11 +164,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="bottom-navbar">
-                    {state?.user?.role == 'seller' ? (
-                        <>
-
-                        </>) :
-                        (<>
+               
                             <div className="buttom-navbar-container">
                                 <ul className="categories">
                                     <li onClick={() => router('/MultipleProduct')}>
@@ -209,7 +205,6 @@ const Navbar = () => {
                                     </li>
                                 </ul>
                             </div>
-                        </>)}
 
                 </div>
 
