@@ -10,7 +10,7 @@ import HandleAuthContext from './Context/AuthContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter >
       <Toaster
         position="top-center"
         reverseOrder={false}

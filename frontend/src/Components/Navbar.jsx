@@ -10,8 +10,8 @@ const Navbar = () => {
 
     const { state, dispatch } = useContext(AuthContext)
     const router = useNavigate();
-    const LOGOUT = ()=>{
-        dispatch({type:"LOGOUT"})
+    const LOGOUT = () => {
+        dispatch({ type: "LOGOUT" })
         router('/')
     }
 
@@ -111,9 +111,9 @@ const Navbar = () => {
                                             <Icon.Cart className="smIcons" />
                                         </div>
                                         <div className="top-right-menu-name">cart</div>
-                                        {state?.cart?.totalProducts?(<><div className='cProCount'>{state?.cart?.totalProducts} </div></>):(<></>)}
-                                        
-                                       
+                                        {state?.cart?.totalProducts ? (<><div className='cProCount'>{state?.cart?.totalProducts} </div></>) : (<></>)}
+
+
                                     </div>
                                 </>
 
@@ -168,47 +168,47 @@ const Navbar = () => {
                 </div>
 
                 <div className="bottom-navbar">
-               
-                            <div className="buttom-navbar-container">
-                                <ul className="categories">
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >All Jewellery </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >Gold </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >diamond </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >earrings </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >rings </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >exclusive coins </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >mia </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a >collections </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a>rivaah </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a>Golden Harvest </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a>corporate gifting </a>
-                                    </li>
-                                    <li onClick={() => router('/MultipleProduct')}>
-                                        <a>more </a>
-                                    </li>
-                                </ul>
-                            </div>
+
+                    <div className="buttom-navbar-container">
+                        <ul className="categories">
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >All Jewellery </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >Gold </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >diamond </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >earrings </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >rings </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >exclusive coins </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >mia </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a >collections </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a>rivaah </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a>Golden Harvest </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a>corporate gifting </a>
+                            </li>
+                            <li onClick={() => router('/MultipleProduct')}>
+                                <a>more </a>
+                            </li>
+                        </ul>
+                    </div>
 
                 </div>
 

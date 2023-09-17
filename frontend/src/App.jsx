@@ -12,11 +12,12 @@ import Footer from './Components/Footer';
 import Cart from './Components/Cart';
 import PageLoader from './Components/PageLoader';
 import SuccessPage from './Components/SuccessPage';
-import OrderHistory from './Components/OrderHistory';
 import AddProduct from './Components/Seller/AddProduct';
 import SellerDashboard from './Components/Seller/SellerDashboard';
 import SellerAllProducts from './Components/Seller/SellerAllProducts';
 import UpdateProduct from './Components/Seller/UpdateProduct';
+import MyProfile from './Components/Profile/MyProfile';
+import MyOrderHistory from './Components/Profile/MyOrderHistory';
 
 function App() {
   const { state } = useContext(AuthContext);
@@ -35,11 +36,13 @@ function App() {
         <Route exact path='/cart'element={<Cart/>}/>
         <Route exact path='/pageloader' element={<PageLoader/>}/>
         <Route exact path='/successpage' element={<SuccessPage/>}/>
-        <Route exact path='/orderhistory' element={<OrderHistory/>}/>
         <Route exact path='/sellerdashboard' element={<SellerDashboard/>}/>
         <Route exact path='/sellerAllProducts' element={<SellerAllProducts/>}/>
         <Route exact path='/updateproduct/:pId' element={<UpdateProduct/>}/>
+        <Route exact path='/myprofile' element={<MyProfile/>}/>
+        <Route exact path='/myorder' element={<MyOrderHistory/>}/>
 
+        
 
 
 

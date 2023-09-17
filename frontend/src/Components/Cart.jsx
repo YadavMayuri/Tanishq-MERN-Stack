@@ -9,7 +9,7 @@ import Navbar from "./Navbar";
 import * as Icon from 'react-bootstrap-icons';
 import { useNavigate } from "react-router-dom";
 import PageLoader from "./PageLoader";
-import {AuthProtected} from "./AuthProtected";
+import { AuthProtected } from "./AuthProtected";
 
 
 const Cart = () => {
@@ -24,7 +24,7 @@ const Cart = () => {
     const [loading, setLoading] = useState(false);
 
 
-     useEffect(() => {
+    useEffect(() => {
 
         const getCartProduct = async () => {
             setLoading(true)
@@ -39,7 +39,7 @@ const Cart = () => {
                     setTotalProduct(response.data.totalProducts)
                     setSubTotal(response.data.subTotal)
                     console.log(response.data.cartProducts);
-                    console.log(response.data.totalProducts,"response - tot pro from get pro controller");
+                    console.log(response.data.totalProducts, "response - tot pro from get pro controller");
                 } else {
                     return toast.error
                 }
@@ -56,6 +56,7 @@ const Cart = () => {
     }, [state])
 
 
+
     async function removeProductfromCart(pId) {
         setLoading(true)
         try {
@@ -70,7 +71,7 @@ const Cart = () => {
                 setTotalProduct(response.data.totalProducts)
                 setTotalprice(response.data.totalPrice)
                 toast.success("Product removed from cart!")
-                console.log(response.data.totalProducts,"response - tot pro from remove pro controller");
+                console.log(response.data.totalProducts, "response - tot pro from remove pro controller");
 
             }
             else {
@@ -97,7 +98,7 @@ const Cart = () => {
                     payload: response.data.cart
                 })
                 setCartProduct(response.data.finalCart)
-                console.log(response.data.finalCart,"response.data.finalCart--- buy now");
+                console.log(response.data.finalCart, "response.data.finalCart--- buy now");
                 toast.success("Order placed successfully!");
             } else {
                 toast.error("Error while processing transaction!")
@@ -153,9 +154,9 @@ const Cart = () => {
 
                                                                     </div>
                                                                     <div className="cart-qty-buttons">
-                                                                        <button className="decrease-btn">-</button>
+                                                                        <button className="decrease-btn" >-</button>
                                                                         <span className="qty-count">1</span>
-                                                                        <button className="increase-btn ">+</button>
+                                                                        <button className="increase-btn " >+</button>
                                                                     </div>
                                                                 </div>
 

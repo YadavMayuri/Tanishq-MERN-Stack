@@ -40,10 +40,6 @@ const Home = () => {
     }
 
 
-
-
-
-
     return (
         <div>
             <Navbar />

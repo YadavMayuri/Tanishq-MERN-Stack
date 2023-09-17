@@ -1609,7 +1609,7 @@ a {
     width: 100%;
     display: flex;
     justify-content: start;
-    gap: 2.6rem;
+    gap: 2.7rem;
     flex-wrap: wrap;
     margin: 4rem auto;
 
@@ -2898,27 +2898,6 @@ a {
     padding-top: 1rem;
 
 }
-
-.emptycartImage {
-    width: 17%;
-    margin: auto;
-    padding-top: 1.5rem;
-}
-
-.emptycartImage img {
-    width: 100%;
-    height: 100%;
-}
-
-.cemtxt {
-    text-align: center;
-    color: #832729;
-    font-size: 2.8rem;
-    font-weight: 800;
-    letter-spacing: 0.02rem;
-    padding-top: 1rem;
-}
-
 .conShoppingbtn {
     cursor: pointer;
     background-color: #832729;
@@ -3270,3 +3249,54 @@ a {
     text-align: center;
     padding: .7rem;
 }
+.dropdownMenu.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0);
+    transition: ease;
+
+}
+.dropdownMenu.inactive{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: ease;
+    
+}
+.dropdownMenu::before{
+    content: '';
+    position: absolute;
+    top: -5;
+    right: 2rem;
+    height: 2rem;
+    width: 2rem;
+    transform: rotate(45deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

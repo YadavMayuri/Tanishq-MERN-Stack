@@ -1,0 +1,87 @@
+.MyorofileWrapper{
+    width: 85%;
+    margin: auto;
+}
+.MyorofileWrapper h1{
+   font-size: 2.4rem;
+}
+.myprofotablewrapper{
+    border-top: .1rem solid lightgray;
+    margin-top: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+.prLeftOptWrap{
+    width: 20%;
+    height: 30rem;
+}
+.rightSideInfoWrap{
+    width: 80%;
+}
+.mPrOpt{
+    padding: 1.5rem 1.6rem;
+    font-size: 1.5rem ;
+    font-weight: 700;
+    border-bottom: .1rem solid lightgray;
+    cursor: pointer;
+    border-right: .1rem solid lightgray;
+}
+.mPrOpt:hover{
+   background-color: rgb(243, 243, 243);
+}
+.rightSideInfoWrap{
+    padding: 1.5rem;
+}
+.emptycartImage {
+    width: 25%;
+    margin: auto;
+}
+.emptycartImage img {
+    width: 100%;
+    height: 100%;
+}
+.cemtxt {
+    text-align: center;
+    color: #832729;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.02rem;
+    padding-top: 1rem;
+}
+.conShoppingbtnInOrder {
+    cursor: pointer;
+    background-color: #832729;
+    color: white;
+    padding: 1.8rem 6rem;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    font-weight: 700;
+    display: block;
+    font-size: 1.6rem;
+    margin: 2rem auto;
+}
+.selected-option{
+    background-color: #f2e9e9;
+    color: #832729;
+}
+.OverViewWrapper {
+   padding: 1.5rem
+}
+.OverViewWrapper h1{
+    font-size: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

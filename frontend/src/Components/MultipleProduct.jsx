@@ -25,7 +25,7 @@ const MultipleProduct = () => {
                     params: { category } // Pass the category as a query parameter
                 });
 
-                console.log(response.data,"resp from get product using useLocation");
+                console.log(response.data, "resp from get product using useLocation");
                 if (response.data.success) {
                     setProducts(response.data.products);
                 } else {
@@ -102,7 +102,7 @@ const MultipleProduct = () => {
                                     <img src="https://stores.maxfashion.in/VendorpageTheme/Enterprise/EThemeForMax/images/product-not-found.jpg" alt="" />
                                 </div>
                                 <div>
-                                    <input type="button" style={{margin:"0 auto"}} value={"Continue Shopping"} className="conShoppingbtn" onClick={() => router('/')} />
+                                    <input type="button" style={{ margin: "0 auto" }} value={"Continue Shopping"} className="conShoppingbtn" onClick={() => router('/')} />
                                 </div>
 
                             </div>

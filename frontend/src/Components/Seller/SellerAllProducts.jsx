@@ -100,7 +100,7 @@ const SellerAllProducts = () => {
                                                             <div className="hurry">only 1 left in stock</div>
                                                             <div className="p-name" id="for-product-name">{product.name} </div>
                                                             <div className="p-price" id="for-product-price"> ₹{product.price} </div>
-                                                            <div className="p-path">{product.category}</div>
+                                                            <div className="p-path">Women | {product.category}</div>
                                                             <button className="explorer-btn">explore now</button>
                                                             <div style={{ marginTop: "1rem", display: "flex", justifyContent: "space-between" }}>
                                                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: ".4rem" }} onClick={() => router(`/updateProduct/${product._id}`)}>

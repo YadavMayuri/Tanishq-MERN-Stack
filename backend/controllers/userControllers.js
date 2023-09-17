@@ -107,7 +107,7 @@ export const addCart = async (req, res) => {
 
         const user = await Users.findOneAndUpdate({ _id: userId }, { $push: { cartProduct: pId } }, { new: true }).exec();
         if (!user) return res.json({ error: "User not found!" });
-        
+
         const cartProducts = user.cartProduct
 
         const discount = 2000;
@@ -122,7 +122,7 @@ export const addCart = async (req, res) => {
         console.log(totalProducts, "total products here");
 
         const cartObj = { cartProducts, totalProducts }
-        return res.json({ success: true, message: "product added to cart!",cart: cartObj });
+        return res.json({ success: true, message: "product added to cart!", cart: cartObj });
 
     } catch (err) {
         console.log(err);
@@ -154,7 +154,7 @@ export const getCartProducts = async (req, res) => {
         console.log(totalProducts, "total products here");
 
         const cartObj = { cartProducts, totalProducts }
-        console.log(cartObj,"cartobject here from getcpro contr");
+        console.log(cartObj, "cartobject here from getcpro contr");
         return res.status(200).json({ success: true, cartProducts, totalPrice, totalProducts, subTotal, cart: cartObj })
 
 
@@ -193,7 +193,7 @@ export const removeproduct = async (req, res) => {
         console.log(totalProducts, "total products here");
 
         const cartObj = { cartProducts, totalProducts }
-        console.log(cartObj,"cartobject here from remove contr");
+        console.log(cartObj, "cartobject here from remove contr");
 
         return res.status(200).json({ success: true, message: "Product removed from cart!", cartProducts, totalPrice, totalProducts, subTotal, cart: cartObj });
 
@@ -228,7 +228,7 @@ export const buyNow = async (req, res) => {
         const finalCart = updateCart.cartProduct
         const totalProducts = finalCart.length;
         const cartObj = { allCartproducts: finalCart, totalProducts }
-        console.log(cartObj,"cartobject here from buynow contr");
+        console.log(cartObj, "cartobject here from buynow contr");
 
         return res.json({ success: true, finalCart, cart: cartObj })
 
