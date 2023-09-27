@@ -5,15 +5,30 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import PageLoader from "../PageLoader";
 
-const ProfileOverview = ()=>{
+const ProfileOverview = () => {
 
-    return(
+    return (
         <>
-        
-        <div className="OverViewWrapper">
-            <h1>Account Overview</h1>
-        </div>
-        
+
+            <div className="OverViewWrapper">
+                <h1>Account Overview</h1>
+                <div className="accOverviewWrapper">
+                    <div className="accOvTopMenuWrapper">
+                        <div className="accLeftTxt">Personal Information</div>
+                        <div className="accRightEditPTxt">Edit Details</div>
+                    </div>
+                    <div className="accInfoWrapper">
+                        <div className="accInfoSingleRowWrapper">
+                            <div className="accInfoTitile">Name</div>
+                            <div className="colon">:</div>
+                            <div className="accInfoDetail">Mayuri</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
         </>
     )
 }
