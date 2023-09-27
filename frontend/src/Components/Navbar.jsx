@@ -61,7 +61,7 @@ const Navbar = () => {
                                                 </div>
                                             </>) :
                                             (<>
-                                                <div className="" onClick={() => router('/orderhistory')}>
+                                                <div className="" onClick={() => router('/myprofile')}>
                                                     <Icon.Person className="smIcons" />
                                                     <p className="top-right-menu-name">{state.user.name}</p>
                                                 </div>
