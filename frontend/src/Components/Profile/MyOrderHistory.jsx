@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import PageLoader from "../PageLoader";
-import * as Icon from "react-bootstrap-icons";
 
 
 const MyOrdersHistory = () => {
@@ -50,11 +49,41 @@ const MyOrdersHistory = () => {
             ) : (
                 <>
                     {orderData?.length ? (
-                        <>
-                       
+                        
+                            <div className="commonScreen">
 
+                                <div className="tOrderHilstoryWrapper">
+                                    <h1>Your Order History</h1>
+                                    {orderData.map((orderHead) => (
+                                        <div className="orderactualContentwrap">
+                                            {orderHead.cartProduct.map((pro) => (
+                                                <div className="oredrImgInfowrap" key={pro._id}>
+                                                    <div className="orderImagewrappwer">
+                                                        <img src={pro.image} alt="" />
+                                                    </div>
+                                                    <div className="orderInfoNamePrice">
+                                                        <p className="Oname">{pro.name}</p>
+                                                        <p className="prorderId">Price : ₹{pro.price} </p>
+                                                        <p className="prorderId">Order ID : {orderHead.orderDetails._id} </p>
+                                                       
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            <hr className="hrMyOrder" />
+                                            <div className="bottomOrderContentWrapper">
+                                                <div className="totalPriceDate">
+                                                    <span> Total Price :  ₹ {orderHead.orderDetails.totalPrice}</span>
+                                                    <span className="prorderId">Order date : {orderHead.orderDetails.createdAt} </span>
+                                                </div>
+                                            </div>
 
-                        </>) : (
+                                        </div>
+                                    ))}
+                                </div>
+
+                            </div>
+
+                        ) : (
                         <>
                             <div className="screen">
                                 <div className="emmaindiv">

@@ -10,7 +10,7 @@ import { AuthContext } from "../../Context/AuthContext";
 
 const MyProfile = ()=>{
 
-    const [selectedOption, setSelectedOption] = useState("Orders");
+    const [selectedOption, setSelectedOption] = useState("ProfileOverview");
     const { state } = useContext(AuthContext)
     const renderRightSideComponent = () => {
         switch (selectedOption) {
@@ -28,7 +28,7 @@ const MyProfile = ()=>{
     return(
         <>
          <Navbar />
-         <div className="commonScreen">
+         <div className="screen">
             <div className="MyorofileWrapper">
             <h1>My Account</h1>
 

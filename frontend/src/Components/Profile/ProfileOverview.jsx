@@ -1,11 +1,11 @@
 import "../../Css/style.css";
 import "../../Css/responsive.css";
 import "../Profile/AllProfile.css"
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
-import PageLoader from "../PageLoader";
 
 const ProfileOverview = () => {
+    const { state } = useContext(AuthContext)
 
     return (
         <>
@@ -21,9 +21,13 @@ const ProfileOverview = () => {
                         <div className="accInfoSingleRowWrapper">
                             <div className="accInfoTitile">Name</div>
                             <div className="colon">:</div>
-                            <div className="accInfoDetail">Mayuri</div>
+                            <div className="accInfoDetail">{state?.user?.name}</div>
                         </div>
-
+                        <div className="accInfoSingleRowWrapper">
+                            <div className="accInfoTitile">Email address</div>
+                            <div className="colon">:</div>
+                            <div className="accInfoDetail">{state?.user?.email}</div>
+                        </div>
                     </div>
 
                 </div>
