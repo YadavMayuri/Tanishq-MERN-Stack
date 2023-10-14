@@ -1,0 +1,30 @@
+/* Updated CSS with increased z-index */
+div[data-tip]:hover::before {
+    content: attr(data-tip) !important;
+    position: absolute;
+    background-color: white;
+    color: #832729;
+    padding: .5rem 1.4rem;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10000;
+    top: calc(100% + 11px);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: .5rem;
+    border: .1rem solid #832729;
+    box-shadow: 0 .4rem .8rem 0 rgba(131, 39, 41, 0.2), 0 .6rem 2rem 0 rgba(131, 39, 41, .19);
+    font-weight: normal;
+}
+
+/* Optional: Style for the tooltip arrow */
+div[data-tip]:hover::after {
+    content: '';
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #832729 transparent;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}

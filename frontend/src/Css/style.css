@@ -29,7 +29,7 @@ a {
     /* border: .2rem solid blue; */
     width: 100%;
     background: #f2e9e9;
-    padding: 1.4rem 0rem;
+    padding: 1rem 0rem;
     font-size: 1..6rem;
     position: fixed;
     top: 0;
@@ -206,7 +206,7 @@ a {
 
 .bottom-navbar {
     width: 100%;
-    margin-top: 7%;
+    margin-top: 6%;
 }
 
 .bottom-navbarmenu {

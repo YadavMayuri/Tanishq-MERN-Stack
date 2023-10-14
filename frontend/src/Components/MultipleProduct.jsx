@@ -66,7 +66,7 @@ const MultipleProduct = () => {
                                 <div className="path">
                                     <div className="path-menu">Home | <span>jewellery</span> </div>
                                 </div>
-                                <div className="product-count"><span>Jewellery</span> | 26866 DESIGNS</div>
+                                <div className="product-count"><span>Jewellery</span> </div>
                                 <div className="function-btn-wrapper">
                                     <button className="function-btn" disabled><i className="fa-solid fa-repeat"></i>Compare</button>
                                     <button className="function-btn">sort by: best sellers<i className="fa-solid fa-angle-down"></i></button>

@@ -149,7 +149,6 @@ const Cart = () => {
                                                                         </div>
                                                                         <div className="cart-prices">
                                                                             <span id="product-price">₹ {pro.price}  </span>
-                                                                            <span>₹50000</span>
                                                                         </div>
 
                                                                     </div>
