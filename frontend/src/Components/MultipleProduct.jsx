@@ -81,7 +81,7 @@ const MultipleProduct = () => {
                                                     <img src={product.image} alt="" />
                                                 </div>
                                                 <div className="product-info">
-                                                    <div className="hurry">only 1 left in stock</div>
+                                                    <div className="hurry">only few left in stock</div>
                                                     <div className="p-name" id="for-product-name">{product.name} </div>
                                                     <div className="p-price" id="for-product-price"> ₹{product.price} </div>
                                                     <div className="p-path">Women | {product.category} </div>

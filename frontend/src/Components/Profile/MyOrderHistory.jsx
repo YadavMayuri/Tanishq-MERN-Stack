@@ -40,6 +40,8 @@ const MyOrdersHistory = () => {
         }
 
     }, [state])
+
+     console.log(orderData,"orderData");
     return (
         <>
             {loading ? (
@@ -55,7 +57,7 @@ const MyOrdersHistory = () => {
                                 <div className="tOrderHilstoryWrapper">
                                     <h1>Your Order History</h1>
                                     {orderData.map((orderHead) => (
-                                        <div className="orderactualContentwrap">
+                                        <div className="orderactualContentwrap" key={orderHead.orderDetails._id} >
                                             {orderHead.cartProduct.map((pro) => (
                                                 <div className="oredrImgInfowrap" key={pro._id}>
                                                     <div className="orderImagewrappwer">

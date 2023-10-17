@@ -1299,7 +1299,7 @@ a {
 .left-login-content {
     width: 72%;
     /* border: .2rem solid rebeccapurple; */
-    padding: 2rem 1rem 1rem 1rem;
+    padding: 2rem 1rem 0 1rem;
 }
 
 .left-login-content>h1 {
@@ -1310,6 +1310,7 @@ a {
 
 .right-login-img {
     width: 28%;
+    /* height: ; */
 }
 
 .right-login-image {
@@ -1420,7 +1421,7 @@ a {
 
 .terms-policy {
     width: 80%;
-    margin: 0rem auto 1rem auto;
+    margin: 0rem auto .5rem auto;
     /* border: .1rem solid red; */
     text-align: center;
     font-size: 1.2rem;
@@ -2504,7 +2505,7 @@ a {
     /* border: .1rem solid palegreen; */
     display: flex;
     justify-content: space-between;
-    margin-top: 2rem;
+    /* margin-top: 1rem; */
 }
 
 .left-added-cart-products {

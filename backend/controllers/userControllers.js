@@ -264,7 +264,7 @@ export const getOrderHistory = async (req, res) => {
                 cartProduct: cartProducts,
             });
         }
-
+        console.log(orderHistory,"orderHistory");
         return res.json({ success: true, orderHistory });
 
     } catch (err) {

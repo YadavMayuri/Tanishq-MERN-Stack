@@ -26,4 +26,4 @@ mongoose.connect("mongodb+srv://mayuriyadav54:HGU1ZbJCNcqlTu0z@cluster0.s9gcceb.
 const Port = process.env.PORT ;
 
 // app.listen(Port,()=>console.log(`Server listining on Port ${Port}`))
-app.listen(3000,()=>console.log("working on port 3000"))
+app.listen(3000,()=>console.log(`working on port ${Port}`))

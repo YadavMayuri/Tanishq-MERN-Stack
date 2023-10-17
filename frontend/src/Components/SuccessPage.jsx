@@ -18,7 +18,7 @@ const SuccessPage = () => {
                     <div className="successContentWrap">
                         <p className="orderCon">Your order has been placed successfully!</p>
                         <p className="ConfEmail">Confirmation will be sent to your email.</p>
-                        <p className="shippingContent">Shipping to <span id="CurrentuserName">{state?.user?.name}</span> vashi, Mumbai,Maharashtra, 402107, India.</p>
+                        <p className="shippingContent">Shipping to <span id="CurrentuserName">{state?.user?.name}</span>, vashi, Mumbai,Maharashtra, 402107, India.</p>
                         <p className="ThanksMsg" style={{fontSize:"2.5rem",margin:"2.5rem 0"}}>Thank you for shopping with us!</p>
                         <input type="button" value={"Continue Shopping"} className="conShoppingbtn" onClick={() => router('/')} />
                     </div>

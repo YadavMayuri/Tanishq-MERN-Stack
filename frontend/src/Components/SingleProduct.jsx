@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {AuthProtected} from "./AuthProtected";
+import { AuthProtected } from "./AuthProtected";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";
@@ -53,7 +53,7 @@ const SingleProduct = () => {
                         type: "AddToCart",
                         payload: data.cart,
                     })
-                    
+
                     Toast.success("Product added to cart!")
                 } else {
                     Toast.error(data.error)
@@ -184,10 +184,13 @@ const SingleProduct = () => {
                                                     <div className="sp-price-para-info">
                                                         Not sure what to buy? Checkout our <span><a href="">Buying Guides</a></span>
                                                     </div>
-                                                    <div className="add-buy-btns">
-                                                        <div id="for-add-to-cart-btn" onClick={addProduct} className="add-to-cart-btn ">Add To Cart </div>
-                                                        <button className="buy-now-btn"> Buy Now</button>
-                                                    </div>
+                                                    {state?.user?.role !== "seller" ? (<>
+                                                        <div className="add-buy-btns">
+                                                            <div id="for-add-to-cart-btn" onClick={addProduct} className="add-to-cart-btn ">Add To Cart </div>
+                                                            <button className="buy-now-btn"> Buy Now</button>
+                                                        </div>
+                                                    </>) : 
+                                                    (<></>)}
                                                     <hr className="sp-hr-linr" />
                                                     <div className="country-pincode">
                                                         <div className="select-country">
