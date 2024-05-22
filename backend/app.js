@@ -19,7 +19,7 @@ app.use('/api',productRouter)
 
 
 
-mongoose.connect("mongodb+srv://mayuriyadav54:HGU1ZbJCNcqlTu0z@cluster0.s9gcceb.mongodb.net/Tanishq-Mern-DB")
+mongoose.connect(process.env.MONGODB_URL)
 .then(()=>console.log("DB Connected successfully"))
 .catch((err)=>console.log("DB error =>",err))
 

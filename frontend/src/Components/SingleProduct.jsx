@@ -312,7 +312,7 @@ const SingleProduct = () => {
 
                                         </div>
                                         <div className="sp-product-highlight-image">
-                                            <img src="https://staticimg.titan.co.in/Tanishq/Catalog/502015FEPAA02_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
+                                            <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dwe5a09b08/images/hi-res/50D3B4FMJAA02_1.jpg" alt="" />
                                         </div>
                                     </div>
 
@@ -354,7 +354,7 @@ const SingleProduct = () => {
                                             <div>
                                                 <div className="products">
                                                     <div className="product-image">
-                                                        <img src="https://staticimg.titan.co.in/Tanishq/Catalog/50D2I1FCTAA02_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
+                                                        <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dwea140c33/images/hi-res/50F3C1FACAA32_1.jpg" alt="" />
                                                     </div>
                                                     <div className="product-info">
                                                         <div className="p-name">Fancy Floral Diamond Finger Ring</div>
@@ -366,7 +366,7 @@ const SingleProduct = () => {
                                             <div>
                                                 <div className="products">
                                                     <div className="product-image">
-                                                        <img src="https://staticimg.titan.co.in/Tanishq/Catalog/500067FYAAA12_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
+                                                        <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dwebbdef94/images/hi-res/501135FKAAA09_1.jpg" alt="" />
                                                     </div>
                                                     <div className="product-info">
                                                         <div className="p-name">Alluring Floral Diamond Finger Ring</div>
@@ -378,7 +378,7 @@ const SingleProduct = () => {
                                             <div>
                                                 <div className="products">
                                                     <div className="product-image">
-                                                        <img src="https://staticimg.titan.co.in/Tanishq/Catalog/500496FDAAB09_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
+                                                        <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dwe992e549/images/hi-res/50D3C1FFBAA02_1.jpg" alt="" />
                                                     </div>
                                                     <div className="product-info">
                                                         <div className="p-name">Sleek Seven Stone Floral Motif Diamond Finger Ring</div>
@@ -390,7 +390,7 @@ const SingleProduct = () => {
                                             <div>
                                                 <div className="products">
                                                     <div className="product-image">
-                                                        <img src="https://staticimg.titan.co.in/Tanishq/Catalog/502015FEPAA02_1.jpg?impolicy=pqmed&imwidth=640" alt="" />
+                                                        <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dwd594ffb1/images/hi-res/501047FDEAB02_1.jpg" alt="" />
                                                     </div>
                                                     <div className="product-info">
                                                         <div className="p-name">Lustrous Diamond Gold Finger Ring</div>
