@@ -21,7 +21,7 @@ const MultipleProduct = () => {
                 const category = new URLSearchParams(location.search).get("category");
                 console.log("Category:", category);
 
-                const response = await axios.get("http://localhost:3000/api/getByCategory", {
+                const response = await axios.get("http://localhost:8000/api/getByCategory", {
                     params: { category } // Pass the category as a query parameter
                 });
 

@@ -20,7 +20,7 @@ const Home = () => {
     async function getByCategory(category) {
         try {
             console.log("in grtcat");
-            const response = await axios.get('http://localhost:3000/api/getByCategory', {
+            const response = await axios.get('http://localhost:8000/api/getByCategory', {
                 params: { category } // Pass the category as a query parameter
             });
 

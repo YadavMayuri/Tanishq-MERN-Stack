@@ -19,7 +19,7 @@ const MyOrdersHistory = () => {
         const getOrderHistory = async () => {
             setLoading(true)
             try {
-                const response = await axios.post('http://localhost:3000/api/buyer/getOrderHistory', { userId: state?.user?.userId })
+                const response = await axios.post('http://localhost:8000/api/buyer/getOrderHistory', { userId: state?.user?.userId })
                 console.log(response, "res from get history");
                 if (response.data.success) {
                     setOrderData(response.data.orderHistory)
