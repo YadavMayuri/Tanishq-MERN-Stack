@@ -78,7 +78,7 @@ const Footer =()=>{
 
                     <div className="footer-container-2">
                         <div className="footer-last-div">
-                            <div className="footer-last-left-div">
+                            {/* <div className="footer-last-left-div">
                                 <div className="footer-payment-image">
                                     <img src="https://staticimg.titan.co.in/Tanishq/Banners/icons/footer/visa.svg" alt="" />
                                 </div>
@@ -106,7 +106,7 @@ const Footer =()=>{
                                 <div className="footer-payment-image">
                                     <img src="https://staticimg.titan.co.in/Tanishq/Banners/icons/footer/amex.svg " alt="" />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="footer-last-right-div">
                                 <p>© 2023 Titan Company Limited. All Rights Reserved.</p>
                                 <p>Terms & conditions | privacy Policy</p>

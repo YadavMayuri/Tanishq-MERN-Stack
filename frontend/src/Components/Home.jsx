@@ -368,7 +368,7 @@ const Home = () => {
                             <div className="top-sell-product-card">
                                 <div className="t-s-product-img">
                                     <div className="topSellerRgt">Top Seller</div>
-                                    <img src="https://staticimg.titan.co.in/Tanishq/Catalog/511072CSGAA00_1.jpg?impolicy=pqmed&imwidth=320"
+                                    <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw2b999a5a/images/hi-res/50D4I1DMKADAPL_1.jpg"
                                         alt="" />
                                 </div>
                                 <div className="t-s-p-info">
@@ -420,7 +420,7 @@ const Home = () => {
                             <div className="top-sell-product-card">
                                 <div className="t-s-product-img">
                                     <div className="topSellerRgt">Top Seller</div>
-                                    <img src="https://staticimg.titan.co.in/Mia/Catalog/552820DLBAAE37_1.jpg?impolicy=pqmed&imwidth=320"
+                                    <img src="https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dwa5de394f/images/hi-res/50D4I1DLZADAPL_1.jpg?sw=640&sh=640"
                                         alt="" />
                                 </div>
                                 <div className="t-s-p-info">
